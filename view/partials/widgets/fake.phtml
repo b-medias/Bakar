@@ -1,0 +1,25 @@
+<div class="row">
+<?php
+	$keys	=	array_rand($advises->getArrayCopy(), 4);
+	
+	foreach($keys as $key){
+		echo	'<div class="col-lg-3 col-md-4">
+					<div class="thumbnail">
+						<p class="center"><span class="fa fa-users fa-5x"></span></p>
+						<p class="txt-center">'.
+							$advises[$key]->name.'<br />'.
+							$advises[$key]->city.'
+						</p>
+						<div class="caption">
+							<h3 class="txt-center">'.$advises[$key]->value.'</h3>
+							<p class="i">
+								<span class="fa fa-quote-left"></span> '.$advises[$key]->comment.' <span class="fa fa-quote-right"></span>
+							</p>
+						</div>
+						<p class="center"><a href="'.$this->url('advise', array('action' => 'add')).'" class="window-json b-btn alphagray">'.$this->translate('Donnez votre avis').'</a></p>
+					</div>
+				</div>
+				<hr class="visible-sm visible-xs" />';
+	}
+?>
+</div>

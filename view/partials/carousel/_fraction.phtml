@@ -1,0 +1,1207 @@
+﻿<?php
+	$mobile	=	$isMobile	==	true	?	'_mobile'	:	'';	
+	$lg		=	$language	==	'nl'	?	'<p class="txt-red bold">'.$this->translate('Désolé, la version en néerlandais n\'est pas encore disponible, merci de votre compréhension').'</p>'	:	'';
+	$pc50	=	$this->translate('-50%, CLIQUEZ ICI POUR EN PROFITER');
+	$pc20	=	$this->translate('-20%, CLIQUEZ ICI POUR EN PROFITER');
+	$pc30	=	$this->translate('-30%, CLIQUEZ ICI POUR EN PROFITER');
+	
+	$promotions	=	array(
+		array(
+			'cnk'		=>	'1713940',
+			'discount'	=>	$pc20,
+			'url'		=>	$this->url('product', array('cnk' => '1713940')),
+			'time'		=>	'12/01/2015',
+			'src'		=>	$this->basePath().'/img/promotions/mixed/avene-cicalfate.jpg',
+			'title'		=>	'Avène CICALFATE',
+			'content'	=>	'<p>
+								Les soins de la gamme Cicalfate favorisent la réparation des couches superficielles des peaux irritées suite à des agressions diverses : 
+								ils contiennent des agents réparateurs et antibactériens intégrés dans des formules adaptées aux irritations sèches, suintantes ou consécutives à un acte dermatologique mineur.<br />
+								Riche en Eau thermale d\'Avène, ces soins apaisent les épidermes fragilisés.<br />
+								Sans parfun, sans paraben.
+							</p>',
+		),
+		array(
+			'cnk'		=>	'2790889',
+			'discount'	=>	$pc30,
+			'url'		=>	$this->url('product', array('cnk' => '2790889')),
+			'time'		=>	'12/01/2015',
+			'src'		=>	$this->basePath().'/img/promotions/mixed/vichy-dercos.jpg',
+			'title'		=>	'Vichy DERCOS <small>Réduit la chute des cheveux</small>',
+			'content'	=>	'<p>Molécule anti-chute de référence en pharmacie, issue de 10 ans de recherches, l\'Aminexil s\'oppose à la rigidification de la gaine de collagène* pour conserver souplesse et élasticité aux tissus qui entourent la racine, et lui permettre de s\'ancrer plus solidement dans le cuir chevelu.</p>
+							 <p>Il est associé au SP 94, développé spécifiquement pour agir sur la qualité de la chevelure : en apportant au bulbe les éléments énergétiques nécessaires à sa croissance, il permet de construire un cheveu plus fort, plus épais.</p>
+							 <p>Les Vitamines PP et B6 revitalisent et embellissent la chevelure.</p>
+							 <div>
+							 	Pour la 1ère fois, leur action est renforcée par une double-stimulation :<br />
+								<ul>
+									<li>L’Arginine pour stimuler la microcirculation sanguine, et favoriser l\'apport de nutriments essentiels à la croissance du bulbe.</li>
+									<li>
+										Le nouvel applicateur massant, à l\'embout rond, ergonomique, en bronze blanc, très doux, convient à tous les cuirs chevelus, même sensibles. 
+										Spécifiquement développé pour une application stimulante sans déperdition sur la chevelure, il permet de masser directement le cuir chevelu et donc de stimuler la microcirculation.
+									</li>
+								</ul>
+							    La densité est retrouvée, le cheveu renforcé.
+							</div>',
+		),
+		array(
+			'cnk'		=>	'3112075',
+			'discount'	=>	$pc20,
+			'url'		=>	$this->url('product', array('cnk' => '3112075')),
+			'time'		=>	'12/01/2015',
+			'src'		=>	$this->basePath().'/img/promotions/mixed/nuxe-creme.jpg',
+			'title'		=>	'Crème Fondante Raffermissante NUXE Body',
+			'content'	=>	'Cette crème raffermissante corps, aux pétales de fleurs d\'amandier et d\'oranger, procure une double action fermeté instantanée et anti-âge. Sa texture délicieuse permet le massage ciblé des zones relâchées (cuisses, ventre, buste et bras) tout en pénétrant rapidement.<br />
+							La peau est plus tonique, douce et raffermit',
+		),
+		array(	
+			'cnk'		=>	'2909745',
+			'discount'	=>	$pc20,
+			'url'		=>	$this->url('product', array('cnk' => '2909745')),
+			'time'		=>	'09/01/2015',
+			'src'		=>	$this->basePath().'/img/promotions/mixed/furterer.jpg',
+			'title'		=>	'FURTERER, FORTICEA',
+			'content'	=>	'Complément idéal des traitements antichute dont il optimise l\'efficacité, Forticea stimule la microcirculation cutanée grâce aux actions conjuguées de l\'extrait naturel de pfaffia et des biosphères d\'huiles essentielles. Les cheveux retrouvent force et vigueur.<br />
+							Enrichi en complexe végétal démêlant, ce shampooing offre un démêlage instantané en toute légèreté.<br />
+							Sans silicone.',
+		),
+		array(
+			'cnk'		=>	'1440056',
+			'discount'	=>	$pc30,
+			'url'		=>	$this->url('product', array('cnk' => '1440056')),
+			'time'		=>	'08/01/2015',
+			'src'		=>	$this->basePath().'/img/promotions/mixed/omnivit-hair-care.jpg',
+			'title'		=>	'Omnivit Hair Care',
+			'content'	=>	'Un complément essentiel qui vous aide à entretenir vos cheveux et vos ongles. grâce aux Se et Zn*<br />
+							Omnivit Cheveux convient à tous ceux qui veulent entrenir ses cheveux et ses ongles.<br />
+							Omnivit Cheveux apporte les ingrédients essentiels pour vos cheveux et ongles.',
+		),
+		array(
+			'cnk'		=>	'2605947',
+			'discount'	=>	$pc50,
+			'url'		=>	$this->url('product', array('cnk' => '2605947')),
+			'time'		=>	'05/01/2015',
+			'src'		=>	$this->basePath().'/img/promotions/mixed/power-adulte-forte-pharma.jpg',
+			'title'		=>	'Power Adulte, Forté Pharma',
+			'content'	=>	'Vos multivitamines pour avoir la forme au quotidien!<br />
+							Energie Power Adulte est un complexe multivitaminé (12 vitamines + 9 minéraux et oligo-éléments, 11 pour le format effervescent) développé pour vous aider à pallier aux déséquilibres biologiques liés au mode de vie moderne (stress, pollution, repas déséquilibrés…).',
+		),
+		array(
+			'cnk'		=>	'2709731',
+			'discount'	=>	$pc50,
+			'url'		=>	$this->url('product', array('cnk' => '2709731')),
+			'time'		=>	'05/01/2015',
+			'src'		=>	$this->basePath().'/img/promotions/mixed/acerola-forte-pharma.jpg',
+			'title'		=>	'Acérola, Forté Pharma',
+			'content'	=>	'Optez pour la vitamince C d\'origine naturelle!<br />
+							Riche en vitamine C d\'origine naturelle, Energie Acérola est idéal contre les coups de pompes.<br />
+							Cette solution d\'origine naturelle se présente sous forme de délicieux comprimés à croquer goût fruits rouges.',
+		),
+		array(
+			'cnk'		=>	'2612513',
+			'discount'	=>	$pc50,
+			'url'		=>	$this->url('product', array('cnk' => '2612513')),
+			'time'		=>	'05/01/2015',
+			'src'		=>	$this->basePath().'/img/promotions/mixed/physiodose-serum-physiologique.jpg',
+			'title'		=>	'Physiodose, Sérum physiologique',
+			'content'	=>	'PHYSIODOSE est un sérum physiologique stérile, sans conservateur, non injectable.<br />
+							Présenté en unidose, PHYSIODOSE est hygiénique et permet facilité et sécurité d’emploi.',
+		),
+		array(
+			'cnk'		=>	'2034916',
+			'discount'	=>	$pc20,			
+			'url'		=>	$this->url('product', array('cnk' => '2034916')),
+			'time'		=>	'05/01/2015',
+			'src'		=>	$this->basePath().'/img/promotions/mixed/la-roche-posay-effaclar.jpg',
+			'title'		=>	'Effaclar, La Roche Posay',
+			'content'	=>	'25 ans d\'expertise dermatologique au service de la peau grasse.<br />
+							Forts d\'une connaissance unique de la physiologie de la peau, les laboratoires La Roche-Posay ont développé une gamme experte pour proposer une réponse dermatologique adaptée à chaque profil de peau grasse.',
+		),
+		array(
+			'cnk'		=>	'2605947',
+			'discount'	=>	$pc50,			
+			'url'		=>	$this->url('product', array('cnk' => '2605947')),
+			'time'		=>	'05/01/2015',
+			'src'		=>	$this->basePath().'/img/promotions/mixed/energie-50-plus-forte-pharma.jpg',
+			'title'		=>	'Energie Power 50+',
+			'content'	=>	'Vos multivitamines pour avoir la forme au quotidien après 50 ans !<br />
+							Energie Power 50+ est un complexe multivitaminé (12 vitamines + 9 minéraux et oligo-éléments + 75 mg de Ginseng) développé pour vous aider à pallier aux déséquilibres biologiques spécifiques aux 50 ans et plus (fatigue générale, baisse de moral…).',
+		),
+		array(
+			'cnk'		=>	'2605921',
+			'discount'	=>	$pc50,
+			'url'		=>	$this->url('product', array('cnk' => '2605921')),
+			'time'		=>	'04/01/2015',
+			'src'		=>	$this->basePath().'/img/promotions/mixed/power-junior-forte-pharma.jpg',
+			'title'		=>	'Power Junior Forté Pharma',
+			'content'	=>	'Energie Power Junior est un complexe multi-vitaminé (12 vitamines + 4 minéraux) associé à de la Gelée Royale, développé pour palier aux déséquilibres biologiques liés aux modes de vie sédentaires (TV, jeux vidéos...) et à la mauvaise alimentation (repas pauvres en fruits et légumes) des enfants de 7 à 15 ans.<br />
+							Une formule pour aider les 7-15 ans à réduire la fatigue et renforcer les défenses naturelles, avec un délicieux goût Grenadine !<br />
+							Les vitamines C, B2, B3, B6, B9, B12, B5, ainsi que le magnésium et le fer contribuent à réduire la fatigue.<br />
+							Les vitamines A, D, C; B6, B9, B12 ainsi que le fer et le sélénium contribuent au fonctionnement normal du système immunitaire.',
+		),
+		array(
+			'cnk'		=>	'3113487',
+			'discount'	=>	$pc50,			
+			'url'		=>	$this->url('product', array('cnk' => '3113487')),
+			'time'		=>	'05/01/2015',
+			'src'		=>	$this->basePath().'/img/promotions/mixed/davitamon-junior.jpg',
+			'title'		=>	'Davitaon Junior',
+			'content'	=>	'Pour une croissance en bonne santé<br />
+							 Une nouvelle période arrive: votre bambin devient un écolier!<br />
+							 Il peut donc aussi être souhaitable de donner à votre enfant un complément de vitamines et de minéraux, en plus d\'une alimentation saine.<br />
+							 Les produits de Davitamon contribuent à leur apporter les compléments dont ils ont besoin pour grandir en bonne santé.<br />
+							 Davitamon compte dans son assortiment de produits des compléments alimentaires qui sont précisément adaptés aux besoins de votre enfant: Davitamon Junior.<br />
+							 Il est important que votre enfant ait un apport en vitamines suffisant pendant cette phase de croissance car ce sont elles qui constituent la base de sa santé future.<br />
+							 Davitamon Junior aide à fournir les compléments dont votre enfant a besoin pour grandir en bonne santé.<br />
+							 Ces délicieux comprimés à croquer ne contiennent ni sucre, ni lactose, ni conservateurs.<br />
+							 Outre les vitamines et les minéraux, les Comprimés à croquer de Davitamon Junior contiennent du xylitol.<br />
+							 Le xylitol a une action bénéfique sur la dentition et aide ainsi à garder des dents en bonne santé.',
+		),
+		array(
+			'cnk'		=>	'2453751',
+			'discount'	=>	$pc50,		
+			'url'		=>	$this->url('product', array('cnk' => '2453751')),
+			'time'		=>	'04/01/2015',
+			'src'		=>	$this->basePath().'/img/promotions/mixed/physiodose-eau-de-mer.jpg',
+			'title'		=>	'Physiodose, Eau De Mer Isotonique',
+			'content'	=>	'Le spray PHYSIODOSE isotonique est un produit 100% naturel, stérile et sans conservateur.<br />
+							Naturellement riche en sels minéraux et oligo-éléments marins, le spray nasal PHYSIODOSE est conseillé chez le nourrisson, l\'enfant et l\'adulte pour le lavage quotidien des fosses nasales, notamment en cas de nez encombré ou sec.<br />
+							Véritable geste de prévention, le mouchage et le lavage nasal quotidien avec de l’eau de mer est indispensable. Il permet de limiter les risques de surinfections bactériennes et d’atténuer les symptômes.<br />
+							Les cils vibratiles reprennent leur travail, la muqueuse est humidifiée, le corps retrouve une de ses tours de défense.<br />
+							Le système de microdiffusion permet une couverture optimale des fosses nasales. La fine taille des gouttelettes va leur permettre de mieux adhérer à la muqueuse et faciliter ainsi son humidification.',
+		),
+	);
+	$articles	=	array(
+		array(
+			'source'	=>	'be-pharma',
+			'src'		=>	$this->basePath().'/img/posts/pharmacie-de-la-couronne.jpg',
+			'title'		=>	'Be-Pharma.be est le prolongement virtuel de la Pharmacie de la Couronne',
+			'time'		=>	'',
+			'content'	=>	'<p>Pharmacien titulaire : Bakar M.</p>
+							 <p>Be-Pharma est le prolongement virtuel de la Pharmacie de la Couronne</p>
+							 <p>
+							 	Heures d\'ouverture de la pharmacie réelle<br />
+							 	Du lundi au vendredi de 08h30 à 19h00<br />
+							 	Le samedi de 08h30 à 12h30
+							</p>
+							<address class="address">
+								'.$compagny->name.'<br />
+								'.$compagny->address.'<br />
+								'.$compagny->phone.' - '.$compagny->fax.'<br />
+								'.$compagny->email.'<br />
+								'.$compagny->website.'
+							</address>',
+    	),
+		array(
+			'source'	=>	'générale',
+			'src'		=>	$this->basePath().'/img/posts/imc.jpg',
+			'title'		=>	'Qu\'est-ce que l\'IMC?',
+			'time'		=>	'14/01/2015',
+			'content'	=>	'<p>
+								L\'IMC est "l\'indice de masse corporelle" ou BMI en anglais pour "Body Mass Index".<br />
+								Il s\'agit d\'une mesure de poids faite par rapport à la taille.<br />
+								Cette mesure est effectuée dans le but de déterminer si la personne concernée est ou non en surpoids.<br />
+							</p>
+							<p class="underline">Comment calculer son IMC?</p>
+							<p>IMC = poids (kg) / taille (m)²</p>
+							<p>
+								Il s\'agit donc du poids en kg divisé par la taille en mètre au carré<br />
+								Exemple:<br />
+								Un individu qui mesure 1m70 et a un poids de 90kg doit faire le calcul suivant: 90/(1,7²) = 31,14<br />
+								Cette individu a donc un IMC de 31,14.
+							</p>
+							<p>
+								Mais que donne comme information la valeur de l\'IMC?<br />
+								Pour évaluer son IMC, on dispose d\'une échelle graduelle.
+							</p>
+							
+							<ul>
+								<li>Un IMC compris entre 0 et 18 est considéré comme Maigreur.</li>
+								<li>Un IMC compris entre 18 et 25 est considéré comme Normal.</li>
+								<li>Un IMC compris entre 25 et 30 est considéré comme Surpoids.</li>
+								<li>Un IMC supérieur à 30 est considéré comme Obésité.</li>
+							</ul>
+							<p>
+								C\'est l\'OMS, l\'organistation mondiale de la santé qui a définit qu\'un IMC égal ou supérieur à 25 est considéré comme étant du surpoids et supérieur à 30 comme étant de l\'obésité.<br />
+								Cette échelle permet de déterminer pour chaque individu le niveau de risque de maladies.
+							</p>
+							<ul>
+								<li>IMC moins de 16 dispose d\'un risque élevé de maladies</li>
+								<li>IMC moins de 18,5 dispose d\'un risque accru de maladies</li>
+								<li>IMC de 18 à 25 dispose d\'un risque faible de maladies</li>
+								<li>IMC de 25 à 30 dispose d\'un risque accru de maladies</li>
+								<li>IMC de 30 à 35 dispose d\'un risque élevé de maladies</li>
+								<li>IMC de 35 à 40 dispose d\'un risqué très élevé de maladies</li>
+								<li>IMC de 40 ou plus d\'un risque extrêmement élevé de maladies</li>
+							</ul>
+							<p>
+								L\'IMC est évaluable tant pour les femmes que pour les hommes adultes.<br />
+								En général, il reste valable jusqu\'à 65 ans.<br />
+								Il s\'agit malgré tout d\'une valeur approximative car chaque individu ne dispose pas de la même masse graisseuse.<br />
+								De plus, cet indice ne prend pas en compte d\'autres éléments importants comme la masse osseuse ou la masse musculaire.<br />
+								Il existe d\'autres échelles pour les cas particuliers, comme par exemples les femmes enceintes ou les nourissons.
+							</p>
+							<p>
+								Si vous avez des questions concernant votre IMC, n \'hésitez pas à prendre contact avec votre médecin ou votre pharmacien.<br />
+								Be-Pharma est à votre écoute, dans nos pharmacies ou sur internet. Nos spécialistes vous répondront avec le plus grand plaisir et avec la plus grande discrétion.
+							</p>',
+		),
+		array(
+			'source'	=>	'APB',
+			'src'		=>	$this->basePath().'/img/posts/achat-sur-internet.jpg',
+			'title'		=>	'Achat de médicaments sur internet',
+			'time'		=>	'13/01/2015',
+			'content'	=>	'<p>Internet est une source d\'informations précieuse lorsqu\'on sait différencier le bon du mauvais.</p>
+							 <p>Certains sites internet de vente en ligne de médicaments ne font pas partie du circuit légal, c\'est-à-dire qu\'ils échappent aux contrôles de l\'AFMPS et qu\'ils n\'ont pas leur équivalent en pharmacie réelle sur le territoire belge.</p>
+							 <p>En 2011, les douanes belges ont intercepté pas moins de 17 000 boîtes de médicaments contrefaits.</p>
+							 <p>Outre le fait que tous ces e-commerces sont illégaux, les produits qu\'ils vendent sont également très dangereux pour votre santé.</p>
+							 <p>Les médicaments vendus sur de tels sites sont dans la plupart du temps créés avec des produits extrêmement dangereux et qui n\'ont aucun bienfait sur votre santé, que du contraire.</p>
+							 <p>Lorsque vous faites vos achats sur internet, vérifiez toujours que le site e-pharmacie que vous visitez dispose bien de sa pharmacie réelle sur le territoire belge et que cette pharmacie est certifiée par l\'organisme compétent, l\'AFMPS.</p>
+							 <p>Be-Pharma est un site internet belge qui est le prolongement virtuel de la Pharmacie de la Couronne, pharmacie certifiée par l\'AFMPS.</p>
+							 <p>Pour de plus amples informations, n\'hésitez pas à nous contacter par téléphone, email ou via la rubrique contact de notre site internet.</p>',
+		),
+		array(
+			'source'	=>	'Pharmacie.be',
+			'src'		=>	$this->basePath().'/img/posts/utiliser-gouttes-et-spray.jpg',
+			'title'		=>	'Comment bien utiliser les gouttes et les sprays pour le nez?',
+			'timte'		=>	'12/01/2015',
+			'content'	=>	'<p>
+								Lorsqu\'on a le nez bouché, les vaisseaux sanguins qui s\'y trouvent sont dilatés, d\'où cette sensation d\'obstruction des voies nasales.<br />
+								Les sprays et les gouttes pour le nez permettent de décongestionner le nez rapidement.
+							</p>
+							<p>En fonction de leur composition, les gouttes et sprays pour le nez peuvent être utilisés 2 à 4x par jour.</p>
+							<div>
+								Voici les conseils d\'utilisation:<br />
+								<ul>
+									<li>Il faut toujours se moucher avant d\'utiliser les gouttes ou le spray pour le nez.</li>
+									<li>Toujours rincer le doseur et compter les gouttes pour éviter l\'infection.</li>
+									<li>Ne jamais partager vos flacons.</li>
+									<li>Ne pas utiliser plus de 7 jours sans un avis médical.</li>
+									<li>Bien entendu, utiliser les sprays et les gouttes pour le nez uniquement en cas de nécessité.</li>
+								</ul>
+							</div>
+							<p class="txt-red">
+								<strong>
+									L\'utilisation prolongée de ces types de médicaments peuvent à la longue, vous rendre dépendant et altérer la muqueuse nasale et l\'odorat.
+								</strong>
+							</p>
+							<p>Au cas où les symptômes persistent, parlez-en donc à votre pharmacien ou à votre médecin.</p>',
+		),
+		array(
+			'source'	=>	'APB',
+			'src'		=>	$this->basePath().'/img/posts/pharmacie-en-belgique.jpg',
+			'title'		=>	'Les pharmacies en Belgique',
+			'content'	=>	'La Belgique compte 11 millions d\'habitants et il existerait une pharmacie pour 2200 habitants, soit un total de plus ou moins 5002 pharmacies.<br />
+							 Autant dire que vous avez normalement toujours une pharmacie près de chez vous.<br />
+							 Be-Pharma, pharmacie, se propose de livrer vos commandes le jour même si vous habitez dans l\'une des 19 communes de la région de Bruxelles et dans la périphérie.<br />
+							 Be-Pharma, pharmacie, vous livre gratuitement à partir d\'une commande de minimum 49€.<br />
+						     Nous restons à votre disposition sur place, par téléphone ou par mail pour tout complément d\'informations.',
+		),
+		array(
+			'source'	=>	'AFMPS',
+			'src'		=>	$this->basePath().'/img/posts/afmps.jpg',
+			'title'		=>	'Be-Pharma pharmacie - (Pharmacie de la Couronne) est certifiée par l\'AFMPS',
+			'time'		=>	'12/01/2015',
+			'content'	=>	'<p>Be-Pharma pharmacie (Pharmacie de la Couronne) est une pharmacie certifiée par l\'AFMPS.</p>
+							 <p class="underline bold">Qui est l\'AFMPS?</p>
+							 <p>
+								L’afmps, ex Direction Générale Médicaments du Service Public Fédéral (SPF) Santé publique, est l’autorité compétente en matière de qualité, de sécurité et d’efficacité des médicaments et des produits de santé.<br />
+								L\'afmps collabore avec les professionnels de la santé et les autres autorités compétentes sur les plans national et international pour assurer au citoyen le bénéfice optimal des médicaments et des produits de santé dont il a besoin.
+							</p>
+							<p class="underline bold">Le rôle de l\'AFMPS</p>
+							<p>
+								L\'afmps veille, dans l’intérêt de la santé publique, à la qualité, la sécurité et l’efficacité des médicaments et des produits de santé en développement clinique et mis sur le marché.<br />
+								à la qualité, la sécurité et l’efficacité des médicaments et des produits de santé en développement clinique et mis sur le marché.
+							</p>',
+		),				
+		array(
+			'source'	=>	'APB',
+			'src'		=>	$this->basePath().'/img/posts/pharmacie-de-garde.jpg',
+			'title'		=>	'Pharmacies de garde, ce qu\'il faut savoir',
+			'time'		=>	'09/01/2015',
+			'content'	=>	'L\'Université de l\'Ohio a publié une étude selon laquelle, les personnes qui font et postent des selfies en répétition seraient potentiellement instables mentalement.
+							Toujours selon cette étude, il s\'agirait même de psychopathes!
+							Les personnes qui prennent des selfies et qui les retouchent à l\'aide de el, auraient un comportement anti-social extrême.<br />
+							Enfin, ce qui ressort d\'assez frappant, c\'est que ces personnes pourraient prôner l\'auto-objectivation, ce qui conduit souvent à des dépressions et bien d\'autres mauvaises choses encore.﻿﻿',
+		),
+		array(
+			'source'	=>	'APB',
+			'src'		=>	$this->basePath().'/img/posts/selfies.jpg',
+			'title'		=>	'Faire des selfies = Être psychopathe?',
+			'time'		=>	'09/01/2015',
+			'content'	=>	'Lorsqu\'une pharmacie est de garde cela ne signifie pas que la pharmacie est ouverte pour n\'importe quel achat.<br />
+							En effet, contrairement à un magasin classique, la pharmacie de garde est ouverte uniquement pour garantir à la population un besoin urgent de médicament(s).<br />
+							Beaucoup de patients n\'ont pas compris cette différence et ont tendance à aller dans une pharmacie de garde pour demander une crème solaire, un fond de teint et bien d\'autres choses qui peuvent attendre.<br />
+							C\'est pour cela qu\'il existe une campagne qui vise à sensibiliser la population au fait que les pharmacies de garde ne sont pas des nightchops.<br />
+							Il faut également noter que les pharmaciens assurent à tour de rôle la garde en plus des heures normales de travail; c\'est-à-dire sans repos, contrairement à d\'autres domaines.<br />
+							C\'est pour cela qu\'il n\'est pas rare de voir les yeux tirés de votre pharmacien qui a roupillé quelques minutes. Ne soyez donc pas choqué ou frustré.<br />
+							Une urgence en médicament(s) ne veut pas forcément dire prescription. Les pharmaciens aideront toujours les personnes qui souffrent, que ce soit d\'une rage de dents ou d\'autres maux.<br />
+							Be-Pharma vous propose de trouver facilement et en quelques clics, la pharmacie de garde la plus proche de chez vous.﻿',
+		),
+		array(
+			'source'	=>	'FanceSoir.Fr',
+			'src'		=>	$this->basePath().'/img/posts/ecran-tactile-et-sommeil-des-enfants.jpg',
+			'title'		=>	'Ecran tactile et sommeil des enfants, pas bon ménage',
+			'time'		=>	'06/01/2015',
+			'content'	=>	'Selon une étude américaine, les tablettes et autres écrans tactiles présents dans la chambre d\'un enfant lui ferait perdre pas moins de 20 minutes de sommeil par nuit.<br />
+							L\'étude publiée par le magazine américain Pediatrics révèle les effets indésirables que peuvent provoquer tous les gadgets électroniques, mais aussi la télévision, sur le sommeil de nos enfants.<br />
+							Il existerait une sorte de lumière bleue qui émanerait de ces écrans et qui perturberait notre horloge biologique.<br />
+							Plus grave encore, rien que le fait d\'avoir un écran à proximité ou dans la chambre, même éteint, ferait perdre du temps de sommeil à nos enfants.<br />
+							Cette étude a été menée sur 2048 enfants âgés entre 10 et 13 ans.',
+		),
+		array(
+			'source'	=>	'APB',
+			'src'		=>	$this->basePath().'/img/posts/les-medicaments-bon-marche.jpg',
+			'title'		=>	'Les médicaments bon marché. Et pourquoi pas tous?',
+			'time'		=>	'05/01/2015',
+			'content'	=>	'Lorsqu\'une entreprise pharmaceutique sort un nouveau produit, celui-ci est breveté pendant une période, ce qui lui empêche d\'être copié et vendu à plus bas coût.<br />
+							Une fois la durée du brevet écoulée, d\'autres entreprises peuvent en faire des copies et les vendre à plus bas prix. C\'est ce qu\'on appelle les médicaments génériques.<br />
+							C\'est pour cela que certains produits n\'existent pas encore dans leur forme générique.<br />
+							Les médicaments génériques ont la même valeur thérapeutique que les médicaments originaux.<br />
+							Cependant, pour que le produit soit remboursé par l\'INAMI, son prix doit être inférieur d\'au moins 32% par rapport à l\'original.',
+		),
+		array(
+			'source'	=>	'APB',
+			'src'		=>	$this->basePath().'/img/posts/belgique-3eme-plug-gros-consomatteur-d-antibiotiques-europe.jpg',
+			'title'		=>	'La Belgique serait le 3ème plus gros consommateur d\'antibiotiques en Europe',
+			'time'		=>	'05/01/2015',
+			'content'	=>	'Selon une étude publiée ce mercredi 31 décembre par l\'Organisation de Coopération et de Développement Économiques (OCDE), la Belgique serait le 3ème pays d\'Europe qui consommerait le plus d\'antibiotiques.<br />
+							Seul la Grèce et Chypre nous devanceraient.<br />
+							Toujours selon cette étude, on dépasserait de plus ou moins 40% la moyenne européene.<br />
+							Encore plus interpellant, le chiffre qui concerne les dépenses médicamenteuses.<br />
+							La Belgique se situerait en tête de classement avec des moyennes de +- 550€ par habitant, la moyenne européenne étant de 350€.<br />
+							Be-Pharma s\'engage à jouer un rôle important dans l\'accompagnement des patients et le suivi de leur traitement.<br />
+							Nous essayons toujours d\'informer notre patientel pour un usage plus rationnel des médicaments.<br />
+							Que ce soit lors d\'achats sur notre site web ou directement dans nos pharmacies, nous veillons toujours à ce que la quantité demandée corresponde à un usage normal.<br />
+							Si tel n\'est pas le cas, un pharmacien prend immédiatement contact avec le patient.',
+		),
+		array(
+			'source'	=>	'APB',
+			'src'		=>	$this->basePath().'/img/posts/du-cannabis-dans-les-medicaments.jpg',
+			'title'		=>	'Du cannabis dans les médicaments, pour bientôt?',
+			'time'		=>	'04/01/2015',
+			'content'	=>	'Maggie De Block, ministre des Affaires Sociales et de la Santé, souhaite permettre la délivrance de médicaments à base de cannabis.<br />
+							Depuis peu, la vente d\'un médicament à base de cannabis est autorisée en Europe, mais l\'arrêté royal de 2001 l\'interdit dans notre pays.<br />
+							C\'est pour cette raison que Maggie De Block a déposé une proposition de loi visant à supprimer cette restriction et à permettre la délivrance de ces médicaments mais de manière très encadrée.<br />
+							Même si cette proposition venait à être adoptée, les procédures administratives seront très longues avant que de tels médicaments ne soient disponibles, sur prescription évidemment.<br />
+							Si vous désirez être mis au courant de la suite, n\'hésitez pas à vous inscrire à notre newsletter.<br />
+							Vous recevrez également de nombreuses infos concernant votre santé et l\'évolution des pharmacies en Belgique.',
+		),
+		array(
+			'source'	=>	'APB',
+			'src'		=>	$this->basePath().'/img/posts/les-prescriptions-dci.jpg',
+			'title'		=>	'Les prescriptions DCI',
+			'time'		=>	'04/01/2015',
+			'content'	=>	'Depuis août 2005, le médecin peut prescrire un médicament en n\'utilisant que le nom de la molécule, c\'est ce qu\'on appelle une prescription DCI.<br />
+							Les prescriptions DCI (Dénomination Commune Internationale) sont des prescriptions qui ne stipulent plus la marque du produit à délivrer mais plutôt le nom de la molécule.<br />
+							Le pharmacien qui reçoit une telle prescription est tenu de délivrer un médicament qui appartient au groupe de médicaments dit les moins couteux.<br />
+							Le patient a toutefois le droit de demander la marque qu\'il souhaite mais il devra alors payer le prix plein.<br />
+							L\'APB renouvèle chaque mois la liste des médicaments les moins couteux et elle peut être consultée sur son site internet.',
+		),
+	);
+	
+	$promos	=	'';
+	foreach($promotions as $promotion){
+		$promos	.=	'<div class="b-bg bg-striped">
+     					<img class="img-responsive" alt="'.$promotion['title'].'" title="'.$promotion['title'].'" src="'.$promotion['src'].'" />
+      					<p class="txt-center padding-10px"><a href="'.$promotion['url'].'" title="'.$promotion['title'].'" class="window-json btn btn-danger">'.$promotion['discount'].'</a></p>
+						<div class="caption padding-10px">
+        					<h3>'.$promotion['title'].'</h3>
+        					'.$lg.'
+							<div>'.$promotion['content'].'</div>
+      					</div>
+						<div class="b-group padding-10px">
+                    		<a href="'.$this->url('cart', array('action' => 'add', 'cnk' => $promotion['cnk'], 'quantity' => 1)).'" title="'.$this->translate('Ajouter au pannier').'" class="b-btn alphagray window-json">
+                        		<span class="fa fa-share"></span><span class="fa fa-shopping-cart"></span>
+                    		</a><a href="'.$this->url('share', array('action' => 'index', 'type' => 'product', 'reference' => $promotion['cnk'])).'" title="'.$this->translate('Partager ce produit').'" class="b-btn alphagray window-json" data-blightbox-multi="true" data-bwindow-lightbox="true">
+                        		<span class="fa fa-share"></span><span class="fa fa-users"></span>
+                    		</a>
+                		</div>
+    				</div>
+					<hr />';
+	}
+
+	$posts	=	'';
+	foreach($articles as $article){
+		$other	=	'';
+		if(array_key_exists('other', $article)){
+			$other	=	$article['other'];
+		}
+		$posts	.=	'<div class="b-bg bg-striped">
+     					<img class="img-responsive" alt="'.$article['title'].'" title="'.$article['title'].'" src="'.$article['src'].'" />
+      					<div class="caption padding-10px">
+        					<h3>'.$article['title'].'</h3>
+                			<p class="small">'.$article['time'].'</p>
+        					'.$lg.'
+							<div>'.$article['content'].'</div>
+							'.$other.'
+      					</div>
+            			<p class="padding-10px italic small">
+							Résumé par Be-Pharma <br />
+							Pharmacie en ligne belge et dont la pharmacie réel se trouve à Bruxelles<br />
+							Be-Pharma est le prolongement virtuel de la Pharmacie de la Couronne
+						</p>
+						<p class="padding-10px italic small">Source : '.$article['source'].'</p>
+    				</div>';
+	}
+?>
+	
+<div class="slider-wrapper b-item b-bg alphagray">
+    <div>
+        <div class="slider">
+            <div class="fs_loader"></div>
+            <div class="slide">
+               	<img 	src="<?php echo $this->basePath();?>/img/slider/bg/junior<?php echo $mobile;?>.jpg"
+						class="img-responsive"	
+                        title="Junior"
+                        alt="Junior"
+                        data-position="0,0" 
+                        data-in="fade" 
+                        data-out="fade"
+                        data-delay="0" />
+                <img 	src="<?php echo $this->basePath();?>/img/marques/fortepharma<?php echo $mobile;?>.png"
+                        title="FortePharma"
+                        alt="FortePharma"
+                        data-position="0,400" 
+                        data-in="right" 
+                        data-out="left"
+                        data-delay="200" />
+                <img    src="<?php echo $this->basePath();?>/img/slider/pc/50-red<?php echo $mobile;?>.png" 	
+                        alt="-50%"
+                        title="-50%"
+                        data-position="10, 10" 
+                        data-in="right" 
+                        data-out="right"
+                        data-delay="50" />
+                <img	src="<?php echo $this->basePath();?>/img/promotions/w200px/2605921<?php echo $mobile;?>.png"
+                		alt="Promotions"
+                		data-position="110, 360"
+                        data-in="right"
+                        data-out="left"
+                        data-delay="250" /> 
+                <p 		class="b-item b-bg i" 	
+                        data-position="260, 260" 
+                        data-in="left" 
+                        data-step="1" 
+                        data-out="left"
+                        data-delay="50">
+                        	<a 	href="<?php echo $this->url('product', array('cnk' => '2605921'));?>"
+								title="FortePharma"
+                                class="b-btn xl bg-blue">
+                               	<?php echo $pc50;?>
+                            </a>
+              	</p>
+				<p 		class="b-itme b-bg alphablue"	
+                		data-position="330, 380" 
+                        data-in="left" 
+                        data-out="left"
+                        data-step="1"
+                        data-delay="3000">
+                        	<?php echo $this->translate('Pour une santé haute en couleur');?>
+              	</p>             
+            </div>
+            <div class="slide">
+               	<img 	src="<?php echo $this->basePath();?>/img/slider/bg/blue<?php echo $mobile;?>.jpg"
+						class="img-responsive"
+                        title="Blue"
+                        alt="Blue"	
+                        data-position="0,0" 
+                        data-in="fade" 
+                        data-out="fade"
+                        data-delay="0" />
+                <img 	src="<?php echo $this->basePath();?>/img/marques/physiodose<?php echo $mobile;?>.png"
+                        title="Physiodose"
+                        alt="Physiodose"
+                        data-position="0,400" 
+                        data-in="top" 
+                        data-out="top"
+                        data-delay="200" />
+                <img    src="<?php echo $this->basePath();?>/img/slider/pc/50-red<?php echo $mobile;?>.png" 	
+                        alt="-50%"
+                        title="-50%"
+                        data-position="10, 10" 
+                        data-in="right" 
+                        data-out="right"
+                        data-delay="50" />
+                <img	src="<?php echo $this->basePath();?>/img/promotions/w200px/2453751<?php echo $mobile;?>.png"
+                		alt="Promotions"
+                		data-position="50, 500"
+                        data-in="right"
+                        data-out="left"
+                        data-delay="250" /> 
+                <p 		class="b-item b-bg i" 	
+                        data-position="260, 260" 
+                        data-in="right" 
+                        data-step="1" 
+                        data-out="right"
+                        data-delay="50">
+                        	<a 	href="<?php echo $this->url('product', array('cnk' => '2453751'));?>"
+								title="Physiodose"
+                                class="b-btn xl bg-blue">
+                               	<?php echo $pc50;?>
+                            </a>
+              	</p>
+				<p 		class="b-itme b-bg alphablue"	
+                		data-position="160, 300" 
+                        data-in="right" 
+                        data-out="right"
+                        data-step="1"
+                        data-delay="3000">
+                        	<?php echo $this->translate('-50%, ça ne manque pas d\'air!');?>
+              	</p>            
+            </div>   
+            <div class="slide">
+                <img 	src="<?php echo $this->basePath();?>/img/slider/bg/lighting<?php echo $mobile;?>.jpg"
+                        class="img-responsive"	
+                        title="Lighting"
+                        alt="Lighting" 
+                        data-position="0,0" 
+                        data-in="fade" 
+                        data-out="fade"
+                        data-delay="0" />
+                <img 	src="<?php echo $this->basePath();?>/img/marques/fortepharma<?php echo $mobile;?>.png"
+                        title="FortePharma"
+                        alt="FortePharma"
+                        data-position="0,400" 
+                        data-in="right" 
+                        data-out="left"
+                        data-delay="200" />
+                <img    src="<?php echo $this->basePath();?>/img/slider/pc/50-red<?php echo $mobile;?>.png" 	
+                        alt="-50%"
+                        title="-50%"
+                        data-position="10, 10" 
+                        data-in="right" 
+                        data-out="right"
+                        data-delay="50" />
+                <img	src="<?php echo $this->basePath();?>/img/promotions/w200px/2605947<?php echo $mobile;?>.png"
+                        alt="Promotions"
+                        data-position="150, 400"
+                        data-in="right"
+                        data-out="left"
+                        data-delay="250" /> 
+                <p 		class="b-item b-bg i" 	
+                        data-position="290, 380" 
+                        data-in="left" 
+                        data-step="1" 
+                        data-out="left"
+                        data-delay="50">
+                            <a 	href="<?php echo $this->url('product', array('cnk' => '2605947'));?>"
+                                title="Energie Power"
+                                class="b-btn xl bg-rose">
+                                <?php echo $pc50;?>
+                            </a>
+                </p>
+                <p 		class="b-itme b-bg alphablue"	
+                        data-position="200, 500" 
+                        data-in="left" 
+                        data-out="left"
+                        data-step="1"
+                        data-delay="3000">
+                            <?php echo $this->translate('De l\'énergie à prix réduit');?>
+                </p>             
+            </div>
+            <div class="slide">
+               	<img 	src="<?php echo $this->basePath();?>/img/slider/bg/happy<?php echo $mobile;?>.jpg"
+						class="img-responsive"
+                        title="Happy People"
+                        alt="Happy People"	
+                        data-position="0,0" 
+                        data-in="fade" 
+                        data-out="fade"
+                        data-delay="0" />
+                <img 	src="<?php echo $this->basePath();?>/img/marques/fortepharma<?php echo $mobile;?>.png"
+                        title="FortePharma"
+                        alt="FortePharma"
+                        data-position="0,400" 
+                        data-in="right" 
+                        data-out="left"
+                        data-delay="200" />
+                <img    src="<?php echo $this->basePath();?>/img/slider/pc/50-red<?php echo $mobile;?>.png" 	
+                        alt="-50%"
+                        title="-50%"
+                        data-position="10, 10" 
+                        data-in="right" 
+                        data-out="right"
+                        data-delay="50" />
+                <img	src="<?php echo $this->basePath();?>/img/promotions/w200px/2605970<?php echo $mobile;?>.png"
+                		alt="Promotions"
+                		data-position="150, 400"
+                        data-in="right"
+                        data-out="left"
+                        data-delay="250" /> 
+                <p 		class="b-item b-bg i" 	
+                        data-position="260, 260" 
+                        data-in="left" 
+                        data-step="1" 
+                        data-out="left"
+                        data-delay="50">
+                        	<a 	href="<?php echo $this->url('product', array('cnk' => '2605970'));?>"
+								title="FortePharma"
+                                class="b-btn xl bg-orange">
+                               	<?php echo $pc50;?>
+                            </a>
+              	</p>
+				<p 		class="b-itme b-bg alphared"	
+                		data-position="160, 500" 
+                        data-in="left" 
+                        data-out="left"
+                        data-step="1"
+                        data-delay="3000">
+                        	<?php echo $this->translate('Booster votre énergie');?>
+              	</p>            
+            </div>
+            <div class="slide">
+                <img 	src="<?php echo $this->basePath();?>/img/slider/bg/baby<?php echo $mobile;?>.jpg"
+                        class="img-responsive"
+                        title="Bébé"
+                        alt="Bébé"	
+                        data-position="0,0" 
+                        data-in="fade" 
+                        data-out="fade"
+                        data-delay="0" />
+                <img 	src="<?php echo $this->basePath();?>/img/marques/physiodose<?php echo $mobile;?>.png"
+                        title="Physiodose"
+                        alt="Physiodose"
+                        data-position="0,400" 
+                        data-in="top" 
+                        data-out="top"
+                        data-delay="200" />
+                <img    src="<?php echo $this->basePath();?>/img/slider/pc/50-red<?php echo $mobile;?>.png" 	
+                        alt="-50%"
+                        title="-50%"
+                        data-position="10, 10" 
+                        data-in="right" 
+                        data-out="right"
+                        data-delay="50" />
+                <img	src="<?php echo $this->basePath();?>/img/promotions/w200px/2612513<?php echo $mobile;?>.png"
+                        alt="Promotions"
+                        data-position="150, 400"
+                        data-in="right"
+                        data-out="left"
+                        data-delay="250" /> 
+                <p 		class="b-item b-bg i" 	
+                        data-position="260, 260" 
+                        data-in="left" 
+                        data-step="1" 
+                        data-out="left"
+                        data-delay="50">
+                            <a 	href="<?php echo $this->url('product', array('cnk' => '2612513'));?>"
+                                title="Physiodose"
+                                class="b-btn xl bg-rose">
+                                <?php echo $pc50;?>
+                            </a>
+                </p>
+                <p 		class="b-itme b-bg alphared"	
+                        data-position="160, 50" 
+                        data-in="right" 
+                        data-out="right"
+                        data-step="1"
+                        data-delay="3000">
+                            <?php echo $this->translate('Indispensable pour votre bébé');?>
+                </p>            
+            </div>
+            <div class="slide">
+                <img 	src="<?php echo $this->basePath();?>/img/slider/bg/acerola<?php echo $mobile;?>.jpg"
+                        class="img-responsive"
+                        title="Acerola"
+                        alt="Acerola"	
+                        data-position="0,0" 
+                        data-in="fade" 
+                        data-out="fade"
+                        data-delay="0" />
+                <img 	src="<?php echo $this->basePath();?>/img/marques/fortepharma<?php echo $mobile;?>.png"
+                        title="FortePharma"
+                        alt="FortePharma"
+                        data-position="0,400" 
+                        data-in="right" 
+                        data-out="left"
+                        data-delay="200" />
+                <img    src="<?php echo $this->basePath();?>/img/slider/pc/50-red<?php echo $mobile;?>.png" 	
+                        alt="-50%"
+                        title="-50%"
+                        data-position="10, 10" 
+                        data-in="right" 
+                        data-out="right"
+                        data-delay="50" />
+                <img	src="<?php echo $this->basePath();?>/img/promotions/w200px/2709731<?php echo $mobile;?>.png"
+                        alt="Promotions"
+                        data-position="150, 400"
+                        data-in="right"
+                        data-out="left"
+                        data-delay="250" /> 
+                <p 		class="b-item b-bg i" 	
+                        data-position="260, 260" 
+                        data-in="left" 
+                        data-step="1" 
+                        data-out="left"
+                        data-delay="50">
+                            <a 	href="<?php echo $this->url('product', array('cnk' => '2709731'));?>"
+                                title="FortePharma"
+                                class="b-btn xl bg-red">
+                                <?php echo $pc50; ?>
+                            </a>
+                </p>
+                <p 		class="b-itme b-bg alphared"	
+                        data-position="160, 450" 
+                        data-in="right" 
+                        data-out="right"
+                        data-step="1"
+                        data-delay="3000">
+                            <?php echo $this->translate('De l\'énergie naturelle pour tous');?>
+                </p>            
+            </div>
+            <div class="slide">
+               	<img 	src="<?php echo $this->basePath();?>/img/slider/bg/child-run<?php echo $mobile;?>.jpg"
+						class="img-responsive"	
+                        alt="Background"
+                        title="Background"
+                        data-position="0,0" 
+                        data-in="fade" 
+                        data-out="fade"
+                        data-delay="0" />
+                <img 	src="<?php echo $this->basePath();?>/img/marques/davitamon<?php echo $mobile;?>.png"
+                		alt="Davitamon"
+                        title="Davitamon"
+                        data-position="0, 500" 
+                        data-in="top" 
+                        data-out="top"
+                        data-delay="200" />
+                <img    src="<?php echo $this->basePath();?>/img/slider/pc/50-red<?php echo $mobile;?>.png" 	
+                        alt="-50%"
+                        title="-50%"
+                        data-position="10, 10" 
+                        data-in="right" 
+                        data-out="right"
+                        data-delay="50" />
+                <img	src="<?php echo $this->basePath();?>/img/promotions/w200px/3113487<?php echo $mobile;?>.png"
+                		alt="Promotions"
+                        title="Promotions"
+                		data-position="20, 730"
+                        data-in="left"
+                        data-out="left"
+                        data-delay="250" /> 
+                <p 		class="b-item b-bg i" 	
+                        data-position="260, 260" 
+                        data-in="left" 
+                        data-step="1" 
+                        data-out="left"
+                        data-delay="50">
+                        	<a 	href="<?php echo $this->url('product', array('cnk' => '3113487'));?>"
+								title="Davitamon"
+                                class="b-btn xl bg-orange">
+                               	<?php echo $pc50; ?>
+                            </a>
+              	</p>
+				<p 		class="b-itme b-bg alphared"	
+                		data-position="20, 20" 
+                        data-in="top" 
+                        data-out="top"
+                        data-step="1"
+                        data-delay="3000">
+                        	<?php echo $this->translate('Un prix qui donne la pêche!');?>
+              	</p>             
+            </div>
+            <div class="slide">
+               	<img 	src="<?php echo $this->basePath();?>/img/slider/bg/vitamines<?php echo $mobile;?>.jpg"
+						title="Vitamines"
+                        alt="Vitamines"
+                        class="img-responsive"	
+                        data-position="0,0" 
+                        data-in="fade" 
+                        data-out="fade"
+                        data-delay="0" />
+                <img 	src="<?php echo $this->basePath();?>/img/marques/omnivit<?php echo $mobile;?>.png"
+                        title="Omnivit"
+                        alt="Omnivit"
+                        data-position="10, 10" 
+                        data-in="top" 
+                        data-out="top"
+                        data-delay="200" />
+                <img    src="<?php echo $this->basePath();?>/img/slider/pc/30-red<?php echo $mobile;?>.png" 	
+                        alt="-30%"
+                        title="-30%"
+                        data-position="0, 470" 
+                        data-in="left" 
+                        data-out="right"
+                        data-delay="50" />
+                <img	src="<?php echo $this->basePath();?>/img/promotions/w200px/1440056<?php echo $mobile;?>.png"
+                		alt="Promotions"
+                		title="Promotions"
+                        data-position="180, 50"
+                        data-in="right"
+                        data-out="left"
+                        data-delay="250" /> 
+                <p 		class="b-item b-bg i" 	
+                        data-position="260, 260" 
+                        data-in="left" 
+                        data-step="1" 
+                        data-out="left"
+                        data-delay="50">
+                        	<a 	href="<?php echo $this->url('product', array('cnk' => '1440056'));?>"
+								title="Omnivit"
+                                class="b-btn xl bg-orange">
+                               	<?php echo $pc30;?>
+                            </a>
+              	</p>
+				<p 		class="b-itme b-bg alphaorange"	
+                		data-position="330, 500" 
+                        data-in="left" 
+                        data-out="left"
+                        data-step="1"
+                        data-delay="3000">
+                        	<?php echo $this->translate('Vitamines pour tous!');?>
+              	</p>             
+            </div> 
+            <div class="slide">
+               	<img 	src="<?php echo $this->basePath();?>/img/slider/bg/rose<?php echo $mobile;?>.jpg"
+						title="Rose"
+                        alt="Rose"
+                        class="img-responsive"	
+                        data-position="0,0" 
+                        data-in="fade" 
+                        data-out="fade"
+                        data-delay="0" />
+                <img 	src="<?php echo $this->basePath();?>/img/marques/vichy<?php echo $mobile;?>.png"
+                        title="Vichy"
+                        alt="Vichy"
+                        data-position="10, 10" 
+                        data-in="top" 
+                        data-out="top"
+                        data-delay="200" />
+                <img    src="<?php echo $this->basePath();?>/img/slider/pc/30-red<?php echo $mobile;?>.png" 	
+                        alt="-30%"
+                        title="-30%"
+                        data-position="0, 470" 
+                        data-in="left" 
+                        data-out="right"
+                        data-delay="50" />
+                <img	src="<?php echo $this->basePath();?>/img/promotions/w200px/2790889<?php echo $mobile;?>.png"
+                		alt="Promotions"
+                		title="Promotions"
+                        data-position="140, 180"
+                        data-in="right"
+                        data-out="left"
+                        data-delay="250" /> 
+                <p 		class="b-item b-bg i" 	
+                        data-position="260, 260" 
+                        data-in="left" 
+                        data-step="1" 
+                        data-out="left"
+                        data-delay="50">
+                        	<a 	href="<?php echo $this->url('product', array('cnk' => '2790889'));?>"
+								title="Vichy"
+                                class="b-btn xl bg-rose">
+                               	<?php echo $pc30;?>
+                            </a>
+              	</p>
+				<p 		class="b-itme b-bg alphablue"	
+                		data-position="330, 500" 
+                        data-in="left" 
+                        data-out="left"
+                        data-step="1"
+                        data-delay="3000">
+                        	<?php echo $this->translate('Vichy à -30%, immanquable!');?>
+              	</p>             
+            </div>       
+            <div class="slide">
+               	<img 	src="<?php echo $this->basePath();?>/img/slider/bg/furterer<?php echo $mobile;?>.jpg"
+						class="img-responsive"	
+                        data-position="0,0" 
+                        data-in="fade" 
+                        data-out="fade"
+                        alt="Furterer"
+                        title="Furterer"
+                        data-delay="0" />
+                <img 	src="<?php echo $this->basePath();?>/img/marques/furterer<?php echo $mobile;?>.png"
+                        title="Furterer"
+                        alt="Furterer"
+                        data-position="10, 10" 
+                        data-in="top" 
+                        data-out="top"
+                        data-delay="200" />
+                <img    src="<?php echo $this->basePath();?>/img/slider/pc/20-red<?php echo $mobile;?>.png" 	
+                        alt="-20%"
+                        title="-20%"
+                        data-position="0, 600" 
+                        data-in="left" 
+                        data-out="right"
+                        data-delay="50" />
+                <img	src="<?php echo $this->basePath();?>/img/promotions/w200px/2909745<?php echo $mobile;?>.png"
+                		alt="Promotions"
+                		title="Promotions"
+                        data-position="20, 260"
+                        data-in="right"
+                        data-out="left"
+                        data-delay="250" /> 
+                <p 		class="b-item b-bg i" 	
+                        data-position="260, 240" 
+                        data-in="left" 
+                        data-step="1" 
+                        data-out="left"
+                        data-delay="50">
+                        	<a 	href="<?php echo $this->url('product', array('cnk' => '2909745'));?>"
+								title="Furterer"
+                                class="b-btn xl alphagreen">
+                               	<?php echo $pc20;?>
+                            </a>
+              	</p>
+				<p 		class="b-itme b-bg"	
+                		data-position="345, 400" 
+                        data-in="left" 
+                        data-out="left"
+                        data-step="1"
+                        data-delay="3000">
+                        	<?php echo $this->translate('-20%, FURTERER PRIX IMBATTABLE');?>
+              	</p>             
+            </div>
+            <div class="slide">
+               	<img 	src="<?php echo $this->basePath();?>/img/slider/bg/nuxe<?php echo $mobile;?>.jpg"
+						title="Nuxe"
+                        alt="Nuxe"
+                        class="img-responsive"	
+                        data-position="0,0" 
+                        data-in="fade" 
+                        data-out="fade"
+                        data-delay="0" />
+                <img 	src="<?php echo $this->basePath();?>/img/marques/nuxe<?php echo $mobile;?>.png"
+                        title="Nuxe"
+                        alt="Nuxe"
+                        data-position="10, 10" 
+                        data-in="top" 
+                        data-out="top"
+                        data-delay="200" />
+                <img    src="<?php echo $this->basePath();?>/img/slider/pc/20-red<?php echo $mobile;?>.png" 	
+                        alt="-20%"
+                        title="-20%"
+                        data-position="0, 600" 
+                        data-in="left" 
+                        data-out="right"
+                        data-delay="50" />
+                <img	src="<?php echo $this->basePath();?>/img/promotions/w200px/3112075<?php echo $mobile;?>.png"
+                		alt="Promotions"
+                		title="Promotions"
+                        data-position="180, 50"
+                        data-in="right"
+                        data-out="left"
+                        data-delay="250" /> 
+                <p 		class="b-item b-bg i" 	
+                        data-position="260, 240" 
+                        data-in="left" 
+                        data-step="1" 
+                        data-out="left"
+                        data-delay="50">
+                        	<a 	href="<?php echo $this->url('product', array('cnk' => '3112075'));?>"
+								title="Nuxe"
+                                class="b-btn xl alphablack">
+                               	<?php echo $pc20;?>
+                            </a>
+              	</p>
+				<p 		class="b-itme b-bg"	
+                		data-position="345, 500" 
+                        data-in="left" 
+                        data-out="left"
+                        data-step="1"
+                        data-delay="3000">
+                        	<?php echo $this->translate('NUXE, LE LUXE POUR TOUS');?>
+              	</p>             
+            </div>
+            <div class="slide">
+                <img 	src="<?php echo $this->basePath();?>/img/slider/bg/effaclar<?php echo $mobile;?>.jpg"
+                        title="Effaclar"
+                        alt="Effaclar"
+                        class="img-responsive"	
+                        data-position="0,0" 
+                        data-in="fade" 
+                        data-out="fade"
+                        data-delay="0" />
+                <img 	src="<?php echo $this->basePath();?>/img/marques/la-roche-posay<?php echo $mobile;?>.png"
+                        title="La Roche Posay"
+                        alt="La Roche Posay"
+                        data-position="10, 10" 
+                        data-in="top" 
+                        data-out="top"
+                        data-delay="200" />
+                <img    src="<?php echo $this->basePath();?>/img/slider/pc/20-red<?php echo $mobile;?>.png" 	
+                        alt="-20%"
+                        title="-20%"
+                        data-position="140, 0" 
+                        data-in="right" 
+                        data-out="left"
+                        data-delay="50" />
+                <img	src="<?php echo $this->basePath();?>/img/promotions/w200px/2034916.png"
+                        alt="Promotions"
+                        title="Promotions"
+                        data-position="50, 300"
+                        data-in="right"
+                        data-out="left"
+                        data-delay="250" /> 
+                <p 		class="b-item b-bg i" 	
+                        data-position="260, 240" 
+                        data-in="left" 
+                        data-step="1" 
+                        data-out="left"
+                        data-delay="50">
+                            <a 	href="<?php echo $this->url('product', array('cnk' => '2034916'));?>"
+                                title="La roche posay"
+                                class="b-btn xl alphablue">
+                                <?php echo $pc20;?>
+                            </a>
+                </p>
+                <p 		class="b-itme b-bg"	
+                        data-position="350, 500" 
+                        data-in="left" 
+                        data-out="left"
+                        data-step="1"
+                        data-delay="3000">
+                            <?php echo $this->translate('Uniquement sur Be-Pharma');?>
+                </p>             
+            </div>
+        	<div class="slide">
+               	<img 	src="<?php echo $this->basePath();?>/img/slider/bg/flower<?php echo $mobile;?>.jpg"
+						title="Flower"
+                        alt="Flower"
+                        class="img-responsive"	
+                        data-position="0,0" 
+                        data-in="fade" 
+                        data-out="fade"
+                        data-delay="0" />
+                <img 	src="<?php echo $this->basePath();?>/img/marques/avene<?php echo $mobile;?>.png"
+                        title="Avent"
+                        alt="Avent"
+                        data-position="0,0" 
+                        data-in="top" 
+                        data-out="top"
+                        data-delay="200" />
+                <img    src="<?php echo $this->basePath();?>/img/slider/pc/20-red<?php echo $mobile;?>.png" 	
+                        alt="-20%"
+                        title="-20%"
+                        data-position="0, 600" 
+                        data-in="left" 
+                        data-out="right"
+                        data-delay="50" />
+                <img	src="<?php echo $this->basePath();?>/img/promotions/w200px/1713940<?php echo $mobile;?>.png"
+                		alt="Promotions"
+                        title="Promotions"
+                		data-position="20, 400"
+                        data-in="right"
+                        data-out="left"
+                        data-delay="250" /> 
+                <p 		class="b-item b-bg i" 	
+                        data-position="160, 180" 
+                        data-in="left" 
+                        data-step="1" 
+                        data-out="left"
+                        data-delay="50">
+                        	<a 	href="<?php echo $this->url('product', array('cnk' => '1713940'));?>"
+								title="Energie Power"
+                                class="b-btn xl">
+                               	<?php echo $pc20;?>
+                            </a>
+              	</p>
+				<p 		class="b-itme b-bg"	
+                		data-position="350, 500" 
+                        data-in="left" 
+                        data-out="left"
+                        data-step="1"
+                        data-delay="3000">
+                        	<?php echo $this->translate('Uniquement sur Be-Pharma');?>
+              	</p>             
+            </div>          
+            <div class="slide">
+               	<img 	src="<?php echo $this->basePath();?>/img/slider/view.jpg"
+						title="Bruxelles"
+                        alt="Bruxelles"
+                        class="img-responsive"	
+                        data-position="0,0" 
+                        data-in="fade" 
+                        data-out="fade"
+                        data-delay="0" />
+                <img    src="<?php echo $this->basePath();?>/img/base/logo.png" 	
+                        title="Be-Pharma"
+                        alt="Be-Pharma"
+                        data-position="0, 0" 
+                        data-in="right" 
+                        data-out="top"
+                        data-delay="250" />
+                <h3		class="b-item alphagray i"			
+                        data-position="110, 130" 
+                        data-in="top" 
+                        data-out="top"
+                        data-delay="300" 
+                        data-ease-in="easeOutBack"><?php echo $this->translate('Bruxelles Pharmaice');?></h3>
+               	<img	src="<?php echo $this->basePath();?>/img/slider/map-marker.png"
+                		title="Map Marker"
+                        alt="Map Marker"
+                        data-position="280, 210"
+                        data-in="right"
+                        data-step="1"
+                        data-out="right"
+                        data-delay="300" />
+                <p 		class="b-item b-bg bg-green i" 	
+                        data-position="220, 180" 
+                        data-in="left" 
+                        data-step="1" 
+                        data-out="left"
+                        data-delay="350"><?php echo $this->translate('Be-Pharma s\'implante au coeur de Bruxelles');?></p>	                
+            </div>
+            <div class="slide">
+               	<img 	src="<?php echo $this->basePath();?>/img/slider/7.jpg"
+						title="Be-Pharma"
+                        alt="Be-Pharma"
+                        class="img-responsive"	
+                        data-position="0,0" 
+                        data-in="fade" 
+                        data-out="fade"
+                        data-delay="0" />
+                <img 	src="<?php echo $this->basePath();?>/img/slider/24h<?php echo $mobile;?>.png"
+                        title="24H"
+                        alt="24H"
+                        data-position="0,0" 
+                        data-in="right" 
+                        data-out="left"
+                        data-delay="200" />
+                <img    src="<?php echo $this->basePath();?>/img/slider/van.png" 	
+                       	title="Van"
+                        alt="Van"
+                        data-position="0, 700" 
+                        data-in="left" 
+                        data-out="right"
+                        data-delay="50" />
+                <p		class="b-item b-bg bg-red i"			
+                        data-position="140, 180" 
+                        data-in="right" 
+                        data-out="right"
+                        data-delay="50"><?php echo $this->translate('Découvrez la livraison expresse');?></p>
+               	<p 		class="b-item b-bg bg-red i" 	
+                        data-position="200, 140" 
+                        data-in="left" 
+                        data-step="2"
+                        data-out="right"
+                        data-delay="550"><?php echo $this->translate('La livraison le jour même dans tous Bruxelles');?></p>	
+                <p 		class="b-item b-bg bg-red i" 	
+                        data-position="260, 100" 
+                        data-in="left" 
+                        data-step="2" 
+                        data-out="right"
+                        data-delay="1500"><?php echo $this->translate('A domicile, au bureau, ...');?></p>
+                <p 		class="b-item b-bg bg-red i" 	
+                        data-position="320, 60" 
+                        data-in="left" 
+                        data-step="2" 
+                        data-out="right"
+                        data-delay="2000"><?php echo $this->translate('Gratuit à partir d\'une commande de 50€');?></p>	                
+            </div>
+		</div>
+    </div>
+</div>
+<hr />
+<div class="row">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+		<h2><?php echo $this->translate('PROMOTIONS DE -15% à -50%');?></h2>
+		<?php echo $promos;?>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+   		<h2><?php echo $this->translate('NEWS');?></h2>
+		<?php echo $posts;?>     	
+    </div>
+</div>
+
+

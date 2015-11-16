@@ -1,0 +1,9 @@
+<?php
+	$breadcrumb	= $this	->navigation()
+						->breadcrumbs($factory)
+						->setSeparator(' <span class="fa fa-chevron-right"></span> ')
+						->setMinDepth(0)
+						->setPartial('Bakar/breadcrumb')
+						->render();
+	$breadcrumb	=	'<div class="breadcrumb inset">'.$breadcrumb.'</div>';
+	echo $breadcrumb;

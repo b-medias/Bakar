@@ -1,0 +1,33 @@
+<?php
+	$nav		=	'<li class="dropdown">';
+	$dropdown	=	'<ul class="dropdown-menu">';
+
+	foreach($this->container as $page){
+		if(!$page->isVisible() || !$this->navigation()->accept($page)){continue;}
+			
+	
+		if(!$page->hasPages()){
+			if($page->isActive()){
+				$nav	.=	'<a	href="#"
+								title="'.$page->getTitle().'"
+								data-toggle="dropdown"
+								class="dropdown-toggle '.$page->getClass().' '.$active.'">'.
+								$page->getLabel().'
+								<b class="caret"></b>
+							</a>';
+			}
+			else{
+				$dropdown	.=	'<li>
+									<a	href="'.$page->getHref().'"
+										title="'.$page->getTitle().'"
+										class="'.$page->getClass().' '.$active.'">'.$page->getTitle().'</a>
+								</li>';
+			}
+		}		
+	}
+	
+	$dropdown	.=	'</ul>';
+	$nav		.=	$dropdown.'</li>';
+	
+	echo($nav);
+

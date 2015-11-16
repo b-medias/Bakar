@@ -1,0 +1,86 @@
+<?php
+	$config =   array_merge(array(
+        'class' =>  array(
+            'alert'     =>  NULL,
+            'header'    =>  NULL,
+            'title'     =>  NULL,
+            'body'      =>  NULL,
+            'footer'    =>  NULL,
+        ),
+        'values'=>  array(
+            'title'     =>  '',
+            'body'      =>  '',
+        ),
+        'style' =>  NULL,
+        'icon'  =>  '',
+        'footer'=>  FALSE,
+    ), $config);
+	
+    if($config['style'] !== NULL){
+        switch($config['style']){
+            case 'error':
+            $icon   =   '<span class="fa fa-times-circle"></span> ';
+            $title  =   'Error';
+			$config['class']['header']	=	'b-bg bg-red';
+            break;
+            
+            case 'info':
+            $icon   					=   '<span class="fa fa-info"></span> ';
+            $title  					=   'Information';
+			$config['class']['header']	=	'b-bg bg-blue';
+            break;
+            
+            case 'success':
+            $icon   					=   '<span class="glyphicon glyphicon-ok"></span> ';
+            $title						=   'Success';
+			$config['class']['header']	=	'b-bg bg-green';
+            break;
+            
+            case 'warning':
+            $icon   					=   '<span class="glyphicon glyphicon-warning-sign"></span> ';
+            $title						=   'Warning';
+			$config['class']['header']	=	'b-bg bg-orange';
+            break;
+            
+            case 'default':
+            break;
+            
+            case 'notice':
+            $title	=	'Notice';
+            $icon   =   '';
+            break;
+            
+            case 'none':
+            break;
+            
+            default:					
+			break;
+        }
+    }
+    
+    if($config['values']['title'] != ''){
+        $title  =   $config['values']['title'];
+    }
+    if($config['icon'] != ''){
+        $icon   =   $config['icon'].' ';
+    }
+    if($config['footer'] == FALSE){
+		$config['class']['footer'] 	=	'hidden';
+	}
+	
+	$footer =   '<div class="footer '.$config['class']['footer'].'">'.$config['values']['footer'].'</div>';
+    
+
+    $view   =   '<div class="b-alert '.$config['class']['alert'].'">
+                    <div class="header '.$config['class']['header'].'">
+                        <h1 class="b-title '.$config['class']['title'].'">'.$icon.$title.'</h1>
+                    </div>
+                    <div class="body '.$config['class']['body'].'">
+						<div>
+							'.$config['values']['body'].'
+						</div>
+					</div>'.
+                    $footer.'
+                </div>';
+    
+    echo($view);

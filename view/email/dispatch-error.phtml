@@ -1,0 +1,38 @@
+<?php
+/**
+* Bakar (http://www.bakar.be)
+*
+* @link         http://www.bakar.be
+* @copyright    Copyright (c) 2005-2014 Bakar. (http://www.bakar.be)
+* @version      02112014.1840
+*/
+$data		=	$params->data;
+$receiver	=	$data->data;
+$compagny	=	$params->compagny;
+$request 	=	$data->request;
+$response	=	$data->response;
+
+$_request	=	print_r($request, true);
+$_response 	=	print_r($response, true);
+
+$body	=	'<h2>'.$this->translate('Rapport Spybot, le système a détecté une erreur de redirection').'</h2>
+			<h3>'.$this->translate('Voici le message d\'erreur de SpyBoot').'</h3>
+			<p>'.$data->log.'</p>
+			<h3>'.$this->translate('Voici les éléments récoltés lors de la requête').'</h3>
+			<p>'.$request->__toString().'</p>
+			<pre>'.$_request.'</pre>
+			<h3>'.$this->translate('Voici les codes erreur générés').'</h3>
+			<p>'.$response->__toString().'</p>
+			<pre>'.$_response.'</pre>';
+			
+				
+
+
+echo	$this->partial('Email/partial/email', array(
+			'body' 		=>	$body,
+			'compagny'	=>	$compagny,
+			'token'		=>	$params->token,
+			'key'		=>	$params->key,
+			'type'		=>	$params->type,
+			'url'		=>	NULL,
+		));

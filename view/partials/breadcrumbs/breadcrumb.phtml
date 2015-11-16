@@ -1,0 +1,21 @@
+<?php 
+	$breadcrumbs	=	$this->navigation()->breadcrumbs();
+	$container		=	$breadcrumbs->getContainer();
+	$separator		=	$breadcrumbs->getSeparator();
+	$active			=	$breadcrumbs->findActive($container);
+	$links			=	'';
+
+	
+
+	
+	foreach($this->pages as $page){
+		if(!$page->isActive()){
+			$links	.=	'<a href="'.$page->getHref().'" class="'.$page->getClass().' alphagray" title="'.$page->getTitle().'">'.$page->getLabel().'</a> '.$separator.' ';
+		}
+		else{
+			$links	.=	'<a href="'.$page->getHref().'" title="'.$page->getTitle().'" class="'.$page->getClass().' alphablue active">'.$page->getLabel().'</a>';
+		}
+	}
+	
+	echo($links);
+?>

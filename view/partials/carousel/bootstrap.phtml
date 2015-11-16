@@ -1,0 +1,41 @@
+<?php
+	$path		=	$this->basePath();
+	$items		=	'';
+	$li			=	'';
+	$default	=	array(
+		'idCaptions'	=>	'carousel-captions',
+		'idCarousel'	=>	'carousel-'.substr(md5(uniqid(rand(), true)), 0, 5),
+		'active'		=>	0,
+	);
+
+	foreach($imgs as $key => $img){
+		$key 	== $default['active']	?	$classActive	=	'active'	:	$classActive	=	'';
+		$li		.=	'<li class="'.$classActive.' indicator" data-slide-to="'.$key.'" data-target="#'.$default['idCarousel'].'"></li>';
+		$items	.=	'<div class="item '.$classActive.'">
+						<img alt="'.$img['alt'].'" title="'.$img['title'].'" src="'.$img['src'].'" />
+						<div class="carousel-caption">
+							<h3>'.$img['captionTitle'].'</h3>
+							<p>'.$img['captionDescription'].'</p>
+						</div>
+					 </div>';
+	}
+	
+	$actions			=	'<a data-slide="prev" href="#'.$default['idCarousel'].'" class="left carousel-control">
+							  <span class="glyphicon glyphicon-chevron-left"></span>
+							</a>
+							<a data-slide="next" href="#'.$default['idCarousel'].'" class="right carousel-control">
+							  <span class="glyphicon glyphicon-chevron-right"></span>
+							</a>';
+	
+	$carouselIndicators	=	'<ol class="carousel-indicators">'.$li.'</ol>';
+	$carouselInner		=	'<div class="carousel-inner">'.$items.'</div>';
+	
+	$carousel			=	'<div id="'.$default['idCarousel'].'" class="carousel slide">'.
+								$carouselIndicators.
+								$carouselInner.
+								$actions.
+							'</div>';
+	echo($carousel);
+?>
+
+    

@@ -1,0 +1,37 @@
+<?php
+	$pagination = 	'';
+	if($this->pageCount){
+		$state	=	array();
+		$links	=	'';
+		$route 	=	$this->route;
+		
+		!isset($this->previous) ? 	$state['previous'] 	= 	'disabled="disabled"' 	:	$state['previous'] 	= 	'';
+		!isset($this->next)		?	$state['next']		=	'disabled="disabled"'	:	$state['next']		=	'';
+		
+		foreach($this->pagesInRange as $page){
+			$this_class = '';
+			$page == $this->current ? $this_class = 'active' : $this_class = '';
+			$params	=	array_merge( $this->params, array('p' => $page));
+			$links .=	'<a title="Page '.$page.'" class="b-btn alphagray '.$this_class.'" href="'.$this->url($route, $params).'">'.$page.'</a>';
+		}
+		$paramsFirst			=	$params;
+		$paramsPrevious			=	$params;
+		$paramsNext				=	$params;
+		$paramsLast				=	$params;
+		
+		$paramsFirst['p']		=	$this->first;
+		$paramsLast['p']		=	$this->last;
+		$paramsNext['p']		=	$this->next;
+		$paramsPrevious['p']	=	$this->previous;
+				
+		$pagination		=	'<div class="center">';
+		$pagination		.=		'<div class="b-group center">';
+		$pagination		.=			'<a title="First" class="b-btn alphagray" '.$state['previous'].'	href="'.$this->url($route, $paramsFirst).'"><span class="fa fa-angle-double-left"></span></a>';
+		$pagination		.=			'<a title="Previous" class="b-btn alphagray" '.$state['previous'].' href="'.$this->url($route, $paramsPrevious).'"><span class="fa fa-angle-left"></span></a>';
+		$pagination		.=			$links;
+		$pagination		.=			'<a title="Next" class="b-btn alphagray" '.$state['next'].' href="'.$this->url($route, $paramsNext).'"><span class="fa fa-angle-right"></span></a>';
+		$pagination		.=			'<a title="Last" class="b-btn alphagray" '.$state['next'].' href="'.$this->url($route, $paramsLast).'"><span class="fa fa-angle-double-right"></span></a>';
+		$pagination		.=		'</div>';
+		$pagination		.=	'</div>';
+	}
+	echo($pagination);
