@@ -1,7 +1,6 @@
 <?php
 /**
 * Bakar (http://www.bakar.be)
-*
 * @link			http://www.bakar.be
 * @copyright	Copyright (c) 2005-2014 Bakar. (http://www.bakar.be)
 * @version		3.0
@@ -43,7 +42,7 @@ abstract class AbstractListener implements ListenerAggregateInterface{
 	}
 	public function getModuleName(){
 		if($this->moduleName === NULL){
-			$className	=	get_called_class();
+			$className	=	get_called_class();				
 			$className	=	substr($className, 0, strpos($className, '\\'));
 			$this->setModuleName($className);
 		}
@@ -58,7 +57,7 @@ abstract class AbstractListener implements ListenerAggregateInterface{
 	}
 	public function getNameSpace(){
 		if($this->namespace === NULL){
-			$className	=	get_called_class();
+			$className	=	get_called_class();			
 			
 			if(substr_count($className, '\\') > 2){
 				$className	=	substr($className, strpos($className, '\\')+1);
@@ -68,7 +67,7 @@ abstract class AbstractListener implements ListenerAggregateInterface{
 			$this->setNameSpace($className);
 		}
 		return $this->namespace;
-	}
+	}	
 	
 	public function setArrayObject(ArrayObject $arrayObject = NULL){
 		if($arrayObject !== NULL){
@@ -102,7 +101,7 @@ abstract class AbstractListener implements ListenerAggregateInterface{
 		$return				=	$this->moduleConfig;
 		
 		if($this->moduleConfig->offsetExists($key)){
-			$return	=	$this->moduleConfig->offsetGet($key);
+			$return	=	$this->moduleConfig->offsetGet($key);		
 		}
 		
 		return $return;

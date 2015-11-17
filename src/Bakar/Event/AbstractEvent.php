@@ -1,7 +1,6 @@
 <?php
 /**
 * Bakar (http://www.bakar.be)
-*
 * @link			http://www.bakar.be
 * @copyright	Copyright (c) 2005-2014 Bakar. (http://www.bakar.be)
 * @version		3.0
@@ -30,7 +29,7 @@ abstract class AbstractEvent implements EventManagerAwareInterface{
 	
 	public function setServiceManager($serviceManager = NULL){
 		if($serviceManager !== NULL){
-			$this->serviceManager	=	$serviceManager;
+			$this->serviceManager 	=	$serviceManager;
 		}
 		return $this;
 	}

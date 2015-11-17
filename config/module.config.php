@@ -1,6 +1,6 @@
 <?php
 /**
-* Bakar (http://www.bakar.be)
+* bakar (http://www.bakar.be)
 *
 * @link			http://www.bakar.be
 * @copyright	Copyright (c) 2005-2014 Bakar. (http://www.bakar.be)
@@ -27,7 +27,7 @@ return	[
 		],
 		
 		$__NAMESPACE__	=>	[
-			'version'		=>	$__VERSION__,
+			'version'		=>	$__VERSION__,			
 
 			'js'			=>	[
 				'version'	=>	$__VERSION__,
@@ -59,7 +59,6 @@ return	[
 		],
 	],
 
-	
 	'sessionConfig'	=>	[
 		'use_cookies'			=> 	true,
 		//'cookie_domain'		=> 	'http://www.housecare.be',
@@ -87,7 +86,7 @@ return	[
 			'carousel/bootstrap'					=>	__DIR__.'/../view/partials/carousel/bootstrap.phtml',
 			__NAMESPACE__.'/carousel/fraction'		=>	__DIR__.'/../view/partials/carousel/fraction.phtml',
 			__NAMESPACE__.'/breadcrumb'				=>	__DIR__.'/../view/partials/breadcrumbs/breadcrumb.phtml',
-			__NAMESPACE__.'/breadcrumb/render'		=>	__DIR__.'/../view/partials/breadcrumbs/render.phtml',
+			__NAMESPACE__.'/breadcrumb/render'		=>	__DIR__.'/../view/partials/breadcrumbs/render.phtml',	
 			__NAMESPACE__.'/widgets/alert'			=>	__DIR__.'/../view/partials/widgets/alert.phtml',
 			__NAMESPACE__.'/widgets/flash'			=>	__DIR__.'/../view/partials/widgets/flash.phtml',
 			__NAMESPACE__.'/widgets/fake'			=>	__DIR__.'/../view/partials/widgets/fake.phtml',

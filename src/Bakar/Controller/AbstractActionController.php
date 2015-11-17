@@ -1,7 +1,6 @@
 <?php
 /**
 * Bakar (http://www.bakar.be)
-*
 * @link			http://www.bakar.be
 * @copyright	Copyright (c) 2005-2014 Bakar. (http://www.bakar.be)
 * @version		3.0
@@ -41,12 +40,12 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 	}
 	public function getModuleName(){
 		if($this->moduleName === NULL){
-			$className	=	get_called_class();
+			$className	=	get_called_class();				
 			$className	=	substr($className, 0, strpos($className, '\\'));
 			$this->setModuleName($className);
 		}
 		return $this->moduleName;
-	}
+	}	
 	
 	public function setNameSpace($namespace = NULL){
 		if($namespace !== NULL){
@@ -56,7 +55,7 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 	}
 	public function getNameSpace(){
 		if($this->namespace === NULL){
-			$className	=	get_called_class();
+			$className	=	get_called_class();			
 			if(substr_count($className, '\\') > 2){
 				$className	=	substr($className, strpos($className, '\\')+1);
 			}
@@ -102,7 +101,7 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 		$return				=	$this->moduleConfig;
 		
 		if($this->moduleConfig->offsetExists($key)){
-			$return	=	$this->moduleConfig->offsetGet($key);
+			$return	=	$this->moduleConfig->offsetGet($key);		
 		}
 		
 		return $return;
@@ -153,7 +152,7 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 		$forms	=	$config[strtolower($this->getNameSpace())]['form'];
 			
 		$form	=	$form	!==	NULL	?	$forms[$form]	:	$forms;
-		$form	=	$arrayObject		?	$this->getArrayObject($form)	:	$form;
+		$form	=	$arrayObject		?	$this->getArrayObject($form)	:	$form;	
 
 		return $form;
 	}
@@ -242,7 +241,7 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 				
 		return	$this	->viewPlugin()
 						->setVarsAjax($varsAjax)
-						->setVars($vars);
+						->setVars($vars);	
 	}
 	
 	public function getServiceManager(){
@@ -265,7 +264,7 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 		$translate	=	$string;
 		
 		if($string !== '' && $string !== NULL){
-			$translate	=	$this->getTranslator()->translate($string);
+			$translate	=	$this->getTranslator()->translate($string);	
 		}
 		
 		return $translate;
@@ -280,7 +279,7 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 				
 		return $this;
 	}
-	public function getIdentity(){
+	public function getIdentity(){	
 		$e	=	$this	->getSystems()
 						->getEventService()
 						->trigger('identity', $this, array('identity' => NULL))
@@ -288,7 +287,7 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 						
 		$identity	=	$e->getParam('identity');
 
-		return $identity;
+		return $identity;				
 	}
 	public function getExternalService($namespace, $service = NULL){
 		$config		=	$this->getModuleConfig('b');
@@ -305,7 +304,7 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 		$config	=	$root[$config];
 		return	$config;
 	}
-	public function access(){
+	public function access(){		
 		$e		=	$this	->getSystems()
 							->getEventService()
 							->trigger('access', $this, array('access' => NULL, 'identity' => $this->getIdentity()))
