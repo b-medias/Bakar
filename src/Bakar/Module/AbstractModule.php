@@ -9,6 +9,7 @@ namespace Bakar\Module;
 
 use Zend\Mvc\MvcEvent;
 use Zend\EventManager\EventInterface;
+use Zend\Stdlib\ArrayObject;
 
 abstract class AbstractModule{
 	protected $event;
@@ -159,5 +160,16 @@ abstract class AbstractModule{
 						'<pre>'.print_r($data, true).'</pre>';
 		
 		if($exit){exit;}
+	}
+
+	public function setArrayObject(ArrayObject $arrayObject = NULL){
+		if($arrayObject !== NULL){
+			$this->arrayObject	=	$arrayObject;
+		}
+		return $this;
+	}
+	public function getArrayObject($input = array(), $flags = ArrayObject::ARRAY_AS_PROPS, $iteratorClass = 'ArrayIterator'){
+		$this->setArrayObject(new ArrayObject($input, $flags, $iteratorClass));
+		return $this->arrayObject;
 	}
 }
