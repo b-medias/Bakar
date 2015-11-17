@@ -15,6 +15,8 @@ abstract class AbstractService{
 	private $options;
 	private $namespace;
 	private $arrayObject;
+	private $globalConfig;
+	private $modulesConfig;
 	private $moduleConfig;
 	private $rootConfig;
 	private $config;
@@ -106,6 +108,30 @@ abstract class AbstractService{
 		return $this->arrayObject;
 	}
 
+	public function setGlobalConfig($globalConfig = NULL){
+		if($globalConfig !== NULL){
+			$this->globalConfig	=	$globalConfig;
+		}
+		return $this;
+	}
+	public function getGlobalConfig(){
+		if($this->globalConfig === NULL){
+			$this->setGlobalConfig($this->getServiceLocator()->get('Config'));
+		}
+		return $this->globalConfig;
+	}
+	public function setModulesConfig($modulesConfig = NULL){
+		if($modulesConfig !== NULL){
+			$this->modulesConfig	=	$modulesConfig;
+		}
+		return $this;
+	}
+	public function getModulesConfig(){
+		if($this->modulesConfig === NULL){
+			$this->setModulesConfig($this->getGlobalConfig());
+		}
+		return $this->modulesConfig;
+	}
 	public function setModuleConfig($moduleConfig = NULL){
 		if($moduleConfig !== NULL){
 			$this->moduleConfig	=	$moduleConfig;
@@ -114,24 +140,22 @@ abstract class AbstractService{
 	}
 	public function getModuleConfig($key = NULL, $ArrayObject = TRUE){
 		$return;
+		$modulesConfig	=	$this->getModulesConfig();
 		
-		if($this->moduleConfig === NULL){
-			$this->setModuleConfig($this->getServiceLocator()->get('Config'));
+		if($modulesConfig === NULL){
+			$modulesConfig	=	[];
 		}
 		
-		if($this->moduleConfig === NULL){
-			$this->setModuleConfig(array());
-		}
+		$modulesConfig	=	$ArrayObject === TRUE	?	$this->getArrayObject($modulesConfig)	:	$modulesConfig;
+		$return				=	$modulesConfig;
 		
-		$this->moduleConfig	=	$ArrayObject === TRUE	?	$this->getArrayObject($this->moduleConfig)	:	$this->moduleConfig;
-		$return				=	$this->moduleConfig;
-		
-		if($this->moduleConfig->offsetExists($key)){
-			$return	=	$this->moduleConfig->offsetGet($key);		
+		if($modulesConfig->offsetExists($key)){
+			$return	=	$modulesConfig->offsetGet($key);		
 		}
 		
 		return $return;
 	}
+
 
 	public function	setRootConfig($rootConfig = NULL){
 		if($rootConfig !== NULL){
@@ -403,5 +427,19 @@ abstract class AbstractService{
 	}
 	public function getMessage(){
 		return $this->message;
+	}
+
+	private $environment;
+	public function setEnvironment($environment = NULL){
+		if($environment !== NULL){
+			$this->environment	=	$environment;
+		}
+		return $this;
+	}
+	public function getEnvironment(){
+		if($this->environment === NULL){
+			$this->setEnvironment($environment);
+		}
+		return $this->environment;
 	}
 }
