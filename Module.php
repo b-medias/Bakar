@@ -1,7 +1,6 @@
 <?php
 /**
 * Bakar (http://www.bakar.be)
-*
 * @link			http://www.bakar.be
 * @copyright	Copyright (c) 2005-2014 Bakar. (http://www.bakar.be)
 * @version		3.0
@@ -20,7 +19,7 @@ class Module extends Module\AbstractModule{
 				->setConfigForJs();
 		
 		$this	->getEventManager()
-				->attach('render', array($this, 'render'));
+				->attach('render', [$this, 'render']);
 	}
 	public function render(MvcEvent $e){
 		$this	->setEvent($e)
@@ -43,7 +42,7 @@ class Module extends Module\AbstractModule{
 		$rootConfig	=	$this->getConfig();
 		$b			=	$rootConfig['b'];
 		$config		=	$b[strtolower(__NAMESPACE__)];
-		$js			=	$config['version'];
+		$js			=	$config['js'];
 		$this->getEvent()->getViewModel()->setVariable('js', $js);
 		return $this;
 	}
@@ -56,12 +55,12 @@ class Module extends Module\AbstractModule{
 		$service	=	$this->getServiceManager()->get($service);
 		
 		$e			=	$service	->getEventService()
-									->trigger('identity', $this, array('identity' => NULL))
+									->trigger('identity', $this, ['identity' => NULL])
 									->getEvent();
 		
 		/**
 		*	RETURN DIRECT ACCESS
-		*
+		* 
 		if($identity == NULL && $route != 'signin' && $route != 'login'){
 			return	$this->redirect()->toRoute('home');
 		}
@@ -74,18 +73,18 @@ class Module extends Module\AbstractModule{
 		return include __DIR__ . '/config/module.config.php';
 	}
 	public function getAutoloaderConfig(){
-		return array(
-			'Zend\Loader\StandardAutoloader' => array(
-				'namespaces' => array(
-					__NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-				),
-			),
-		);
+		return [
+			'Zend\Loader\StandardAutoloader'	=>	[
+				'namespaces'	=>	[
+					__NAMESPACE__	=>	__DIR__.'/src/'. __NAMESPACE__,
+				],
+			],
+		];
 	}
 	
 	public function getServiceConfig(){
-		return array(
-				'factories'	=>	array(
+		return [
+			'factories'	=>	[
 				__NAMESPACE__.'/Service/'.__NAMESPACE__.'Service'	=>	function($serviceManager){
 																			$service	=	new Service\BakarService();
 																			$service->setServiceManager($serviceManager);
@@ -95,14 +94,14 @@ class Module extends Module\AbstractModule{
 																			$event		=	new Event\BakarEvent;
 																			return 	$event->setServiceManager($serviceManager);
 																		},
-			),
-		);
+			],
+		];
 	}
 	public function getControllerPluginConfig(){
-		return array(
-			'factories' => array(
+		return [
+			'factories'	=>	[
 				'viewPlugin'			=>	function (){
-					$plugin	= 	new Plugins\ViewPlugin;
+					$plugin	=	new Plugins\ViewPlugin;
 					return	$plugin;
 				},
 				'dbPlugin'				=>	function(){
@@ -113,12 +112,12 @@ class Module extends Module\AbstractModule{
 					$plugin	=	new Plugins\DevicePlugin;
 					return $plugin;
 				},
-			),
-		);
+			],
+		];
 	}
 	public function getViewHelperConfig(){
-		return array(
-			'factories'	=>	array(
-		);
+		return [
+			'factories'	=>	array[],
+		];
 	}
 }
