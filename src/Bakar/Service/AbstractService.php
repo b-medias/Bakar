@@ -438,6 +438,8 @@ abstract class AbstractService{
 	}
 	public function getEnvironment(){
 		if($this->environment === NULL){
+			$dbConfig	=	$this->getModuleConfig('db');
+			$environment=	$dbConfig['environment'];
 			$this->setEnvironment($environment);
 		}
 		return $this->environment;
