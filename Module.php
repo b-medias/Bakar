@@ -117,7 +117,7 @@ class Module extends Module\AbstractModule{
 	}
 	public function getViewHelperConfig(){
 		return [
-			'factories'	=>	array[],
+			'factories'	=>	[],
 		];
 	}
 }
