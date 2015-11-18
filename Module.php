@@ -13,6 +13,7 @@ use Zend\EventManager\EventInterface;
 include __DIR__.'/src/'.__NAMESPACE__.'/Module/AbstractModule.php';
 
 class Module extends Module\AbstractModule{		
+	private $systems;
 	public function onBootstrap(MvcEvent $e){
 		$this	->setEvent($e)
 				->php()
@@ -139,4 +140,23 @@ class Module extends Module\AbstractModule{
 			'factories'	=>	[],
 		];
 	}
+	
+ 	public function setSystems($systems = NULL){ 
+ 		if($systems !== NULL){ 
+ 			$this->systems	=	$systems; 
+ 		} 
+ 		return $this; 
+ 	} 
+ 	public function getSystems(){ 
+ 		if($this->systems === NULL){ 
+			$rootConfig	=	$this->getConfig();
+			$b			=	$rootConfig['b'];
+			$config		=	$b['bakar'];
+			$config		=	$config['bakar'];
+			$systems	=	$config['service'];
+			$systems	=	$this->getServiceManager()->get($ystems);
+			$this->setSystems($systems);
+ 		} 
+ 		return $this->systems; 
+	} 
 }
