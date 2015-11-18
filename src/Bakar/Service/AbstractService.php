@@ -27,6 +27,7 @@ abstract class AbstractService{
 	private $moduleName;
 	private $eventService;
 	private $systems;
+	private $modules;
 	
 	public function test(){
 		$this->debug('Hello world from '.get_called_class(), true);
@@ -37,6 +38,24 @@ abstract class AbstractService{
 						'<pre>'.print_r($data, true).'</pre>';
 		
 		if($exit){exit;}
+	}
+	
+	public function _modules($e){
+		$modules	=	$e->getParam('modules');
+		$modules->offsetSet(NULL, $this->getModuleName());
+		return $e;
+	}
+	public function setModules($modules = NULL){
+		if($modules !== NULL){
+			$this->modules	=	$modules;
+		}
+		return $this;
+	}
+	public function getModules(){
+		if($this->modules === NULL){
+			$this->setModules($this->getArrayObject());
+		}
+		return $this->modules
 	}
 	
 	public function setOptions($options = NULL){
