@@ -32,7 +32,8 @@ class Module extends Module\AbstractModule{
 				->attach('finish', [$this, 'finish']);
 	}
 	public function route(MvcEvent $e){
-		$this	->setEvent($e);
+		$this	->setEvent($e)
+				->modules();
 	}
 	public function dispatch($e){
 		$this	->setEvent($e);
@@ -45,6 +46,19 @@ class Module extends Module\AbstractModule{
 	}
 	public function finish(MvcEvent $e){
 		$this	->setEvent($e);
+	}
+	
+	public function modules(){
+		$modules	=	$this	->getSystems()
+								->getEventService()
+								->trigger('modules', $this, ['modules' => $this->getArrayObject()])
+								->getEvent()
+								->getParam('modules');
+
+		$this	->getSystems()
+				->setModules($modules);
+		
+		return $this;
 	}
 	
 	public function php(){
