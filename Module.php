@@ -19,7 +19,22 @@ class Module extends Module\AbstractModule{
 				->setConfigForJs();
 		
 		$this	->getEventManager()
+				->attach('route', [$this, 'route']);
+		
+		$this	->getEventManager()
+				->attach('dispatch', [$this, 'dispatch']);
+				
+		$this	->getEventManager()
 				->attach('render', [$this, 'render']);
+				
+		$this	->getEventManager()
+				->attach('finish', [$this, 'finish']);
+	}
+	public function route(MvcEvent $e){
+		$this	->setEvent($e);
+	}
+	public function dispatch($e){
+		$this	->setEvent($e);
 	}
 	public function render(MvcEvent $e){
 		$this	->setEvent($e)
@@ -27,6 +42,10 @@ class Module extends Module\AbstractModule{
 		
 		return $this;
 	}
+	public function finish(MvcEvent $e){
+		$this	->setEvent($e);
+	}
+	
 	public function php(){
 		$rootConfig	=	$this->getConfig();
 		$b			=	$rootConfig['b'];
