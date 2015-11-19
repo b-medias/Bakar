@@ -55,7 +55,7 @@ abstract class AbstractService{
 		if($this->modules === NULL){
 			$this->setModules($this->getArrayObject());
 		}
-		return $this->modules
+		return $this->modules;
 	}
 	
 	public function setOptions($options = NULL){
