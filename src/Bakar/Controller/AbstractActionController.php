@@ -224,21 +224,25 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 		}
 		return $this;
 	}	
-	public function getView(){
+	public function getView($currentLayout = FALSE){
 		if($this->view	===	NULL){
-			$this->setView($this->generateView());
+			$this->setView($this->generateView($currentLayout));
 		}
 		return $this->view;
 	}
-	public function view(){
-		return	$this->getView();
+	public function view($currentLayout = FALSE){
+		return	$this->getView($currentLayout);
 	}
-	public function generateView(){
+	public function generateView($currentLayout = FALSE){
 		$vars	=	$varsAjax	=	array(
 			'isAjax'	=>	$this->viewPlugin()->isAjax(),
 		);
 				
 		$vars['identity']	=	$this->getIdentity();
+
+		if($currentLayout){
+			$this->layout()->setTemplate($this->getService()->getLayout());
+		}
 				
 		return	$this	->viewPlugin()
 						->setVarsAjax($varsAjax)
@@ -287,8 +291,7 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 		$moduleName	=	ucfirst(strtolower($moduleName));
 		return in_array($moduleName, $this->getModules());
 	}
-
-	////////////////////////////////////		
+	
 	public function log($message){
 		$this	->getSystems()
 				->getEventService()
@@ -327,9 +330,9 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 					]);
 
 					$identifiants	=	$this->getArrayObject([
-						'housecare'	=>	1,
-						'villa'		=>	2,
-						'escape'	=>	3,
+						'housecare'	=>	0,
+						'villa'		=>	1,
+						'escape'	=>	2,
 					]);
 
 					foreach($defaultColumns as $key => $column){
@@ -401,17 +404,6 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 
 		return $identity;				
 	}
-	/*
-	public function getIdentity(){	
-		$e	=	$this	->getSystems()
-						->getEventService()
-						->trigger('identity', $this, array('identity' => NULL))
-						->getEvent();
-						
-		$identity	=	$e->getParam('identity');
-
-		return $identity;				
-	}*/
 	public function getExternalService($namespace, $service = NULL){
 		$config		=	$this->getModuleConfig('b');
 		if($service == NULL){$service = $namespace;}
@@ -426,22 +418,5 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 		$root	=	$root['form'];
 		$config	=	$root[$config];
 		return	$config;
-	}
-	public function access(){
-		$e		=	$this	->getSystems()
-							->getEventService()
-							->trigger('access', $this, array('access' => NULL, 'identity' => $this->getIdentity()))
-							->getEvent();
-							
-		$access		=	$e->getParam('access');
-		$identity	=	$e->getParam('identity');
-			
-		if($access != NULL){
-			if(!$access->isGranted){
-				return	$this->redirect()->toRoute($access->redirect->route, $access->redirect->params);
-			}
-		}
-				
-		return $identity;
 	}
 }

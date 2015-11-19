@@ -28,6 +28,7 @@ abstract class AbstractService{
 	private $eventService;
 	private $systems;
 	private $modules;
+	private $layout;
 	
 	public function test(){
 		$this->debug('Hello world from '.get_called_class(), true);
@@ -40,6 +41,21 @@ abstract class AbstractService{
 		if($exit){exit;}
 	}
 	
+	public function setLayout($layout = NULL){
+		if($layout !== NULL){
+			$this->layout	=	$layout;
+		}
+		
+		return $this;
+	}
+	public function getLayout(){
+		if($this->layout === NULL){
+			$this->setLayout(strtolower($this->getNameSpace()).'/layout/layout');
+		}
+		
+		return 	$this->layout;
+	}
+
 	public function _modules($e){
 		$modules	=	$e->getParam('modules');
 		$modules[]	=	$this->getModuleName();
