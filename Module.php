@@ -168,7 +168,7 @@ class Module extends Module\AbstractModule{
 			$config		=	$b['bakar'];
 			$config		=	$config['bakar'];
 			$systems	=	$config['service'];
-			$systems	=	$this->getServiceManager()->get($ystems);
+			$systems	=	$this->getServiceManager()->get($systems);
 			$this->setSystems($systems);
  		} 
  		return $this->systems; 
