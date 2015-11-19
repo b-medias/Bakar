@@ -279,6 +279,71 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 				
 		return $this;
 	}
+	public function getIdentity(){
+		$identity 	=	NULL;
+		$services	=	$this->getArrayObject([
+							'authentication'	=>	$this->getExternalService('authentication'),
+							'authorization'		=>	$this->getExternalService('authorization'),
+							'administrator'		=>	$this->getExternalService('user', 'administrator'),
+						]);	
+
+		if($services->authentication !== NULL){
+			$identity	=	$services->authentication->getIdentity();
+			if($identity !== NULL){
+				$db 		=	$services->authentication->getRepository()->prepare()->getDb();
+				$db->where([
+					$services->authentication->getRepository()->getTableName().'.id' 	=>	$identity->id,
+					$services->authentication->getRepository()->getTableName().'.state'	=>	1,
+				]);	
+
+
+				if($services->administrator !== NULL){
+					$db->leftJoin(
+						$services->administrator->getRepository()->getTableName(),
+						$db->expression(
+							$services->administrator->getRepository()->getTableName().'.id = '.$services->authentication->getRepository()->getTableName().'.id
+							AND '.$services->authentication->getRepository()->getTableName().'.state = ?
+							AND '.$services->administrator->getRepository()->getTableName().'.state = ?',
+							[1, 1]
+						),
+						$services->administrator->getRepository()->getColumns()
+					);
+				}
+
+				$identity	=	$db		->execute()
+										->getResult();
+
+				
+				if($services->authorization !== NULL){
+					$db	=	$services	->authorization
+										->getRepository()
+										->prepare()
+										->getDb();	
+
+					$spaceAccess	=	$this->getArrayObject([
+											'housecare'	=>	'IF((SELECT COUNT(id) FROM '.$services->authorization->getRepository()->getTableName().' WHERE type = ? AND identifiant = ? AND state = ? AND identity = ? AND _access = ?) > ?, ?, ?) AS haveAccessHousecare',
+											'villa'		=>	'IF((SELECT COUNT(id) FROM '.$services->authorization->getRepository()->getTableName().' WHERE type = ? AND identifiant = ? AND state = ? AND identity = ? AND _access = ?) > ?, ?, ?) AS haveAccessVilla',
+											'escape'	=>	'IF((SELECT COUNT(id) FROM '.$services->authorization->getRepository()->getTableName().' WHERE type = ? AND identifiant = ? AND state = ? AND identity = ? AND _access = ?) > ?, ?, ?) AS haveAccessEscape',
+											'uk'		=>	'',
+										]);
+
+					$identity->access	=	$db	->select($db->expression($spaceAccess->housecare, ['space', 0, 1, $identity->id, 1, 0, 1, 0]))
+												->select($db->expression($spaceAccess->villa, ['space', 1, 1, $identity->id, 1, 0, 1, 0])) 
+												->select($db->expression($spaceAccess->escape, ['space', 1, 2, $identity->id, 1, 0, 1, 0]))
+												->where([
+													'identity'	=>	$identity->id,
+													'state'		=>	1,
+												])
+												->group($services->authorization->getRepository()->getTableName().'.identity')
+												->execute()
+												->getResult();
+				}
+			}
+		}
+
+		return $identity;				
+	}
+	/*
 	public function getIdentity(){	
 		$e	=	$this	->getSystems()
 						->getEventService()
@@ -288,7 +353,7 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 		$identity	=	$e->getParam('identity');
 
 		return $identity;				
-	}
+	}*/
 	public function getExternalService($namespace, $service = NULL){
 		$config		=	$this->getModuleConfig('b');
 		if($service == NULL){$service = $namespace;}
