@@ -33,9 +33,9 @@ abstract class AbstractService{
 		$this->debug('Hello world from '.get_called_class(), true);
 	}
 	
-	public function debug($data, $exit = TRUE, $js = FALSE){
-		echo	$js	?	'<script type="text/javascript">console.log('.print_r($data, true).');</script>'	:
-						'<pre>'.print_r($data, true).'</pre>';
+	public function debug($data, $exit = TRUE, $js = FALSE, $type = 'print'){
+		echo	$js		?	'<script type="text/javascript">console.log('.print_r($data, true).');</script>'	:						
+				$type	==	'print'	?	'<pre>'.print_r($data, true).'</pre>'	:	var_dump($data);
 		
 		if($exit){exit;}
 	}

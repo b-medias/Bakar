@@ -21,13 +21,14 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 	private $view;
 	private $moduleName;
 	private $translator;
+	private $modules;
 
 	public function test(){
 		$this->debug('Hello world from '.get_called_class().' -> '.__FUNCTION__, true);
 	}
-	public function debug($data, $exit = TRUE, $js = FALSE){
-		echo	$js	?	'<script type="text/javascript">console.log('.print_r($data, true).');</script>'	:
-						'<pre>'.print_r($data, true).'</pre>';
+	public function debug($data, $exit = TRUE, $js = FALSE, $type = 'print'){
+		echo	$js		?	'<script type="text/javascript">console.log('.print_r($data, true).');</script>'	:						
+				$type	==	'print'	?	'<pre>'.print_r($data, true).'</pre>'	:	var_dump($data);
 		
 		if($exit){exit;}
 	}
@@ -270,12 +271,21 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 		return $translate;
 	}
 	
-
+	public function setModules($modules = NULL){
+		if($modules !== NULL){
+			$this->modules	=	$modules;
+		}
+		return $this;
+	}
+	public function getModules($arrayObject = FALSE){
+		if($this->modules === NULL){
+			$this->setModules($this->getSystems()->getModules());
+		}
+		return $arrayObject	?	$this->modules	:	$this->modules->getArrayCopy();
+	}
 	public function isModuleInitialized($moduleName){
-		$moduleName 	=	ucfirst(strtolower($moduleName));
-		return 	$this	->getSystems()
-						->getModules()
-						->offsetExists($moduleName);
+		$moduleName	=	ucfirst(strtolower($moduleName));
+		return in_array($moduleName, $this->getModules());
 	}
 
 	////////////////////////////////////		
