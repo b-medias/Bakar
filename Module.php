@@ -51,12 +51,12 @@ class Module extends Module\AbstractModule{
 	public function modules(){
 		$modules	=	$this	->getSystems()
 								->getEventService()
-								->trigger('modules', $this, ['modules' => $this->getArrayObject()])
+								->trigger('modules', $this, ['modules' => []])
 								->getEvent()
 								->getParam('modules');
 
 		$this	->getSystems()
-				->setModules($modules);
+				->setModules($this->getArrayObject($modules));
 		
 		return $this;
 	}

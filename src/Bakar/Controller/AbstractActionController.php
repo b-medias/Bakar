@@ -271,6 +271,13 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 	}
 	
 
+	public function isModuleInitialized($moduleName){
+		$moduleName 	=	ucfirst(strtolower($moduleName));
+		return 	$this	->getSystems()
+						->getModules()
+						->offsetExists($moduleName);
+	}
+
 	////////////////////////////////////		
 	public function log($message){
 		$this	->getSystems()
@@ -369,7 +376,7 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 		$config	=	$root[$config];
 		return	$config;
 	}
-	public function access(){		
+	public function access(){
 		$e		=	$this	->getSystems()
 							->getEventService()
 							->trigger('access', $this, array('access' => NULL, 'identity' => $this->getIdentity()))

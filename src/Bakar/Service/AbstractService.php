@@ -42,7 +42,8 @@ abstract class AbstractService{
 	
 	public function _modules($e){
 		$modules	=	$e->getParam('modules');
-		$modules->offsetSet(NULL, $this->getModuleName());
+		$modules[]	=	$this->getModuleName();
+		$e->setParam('modules', $modules);
 		return $e;
 	}
 	public function setModules($modules = NULL){
