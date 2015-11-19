@@ -301,57 +301,98 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 		$services	=	$this->getArrayObject([
 							'authentication'	=>	$this->getExternalService('authentication'),
 							'authorization'		=>	$this->getExternalService('authorization'),
-							'administrator'		=>	$this->getExternalService('user', 'administrator'),
-						]);	
+						]);
 
-		if($services->authentication !== NULL){
+		if($services->authorization !== NULL){
 			$identity	=	$services->authentication->getIdentity();
+
 			if($identity !== NULL){
-				$db 		=	$services->authentication->getRepository()->prepare()->getDb();
-				$db->where([
-					$services->authentication->getRepository()->getTableName().'.id' 	=>	$identity->id,
-					$services->authentication->getRepository()->getTableName().'.state'	=>	1,
-				]);	
-
-
-				if($services->administrator !== NULL){
-					$db->leftJoin(
-						$services->administrator->getRepository()->getTableName(),
-						$db->expression(
-							$services->administrator->getRepository()->getTableName().'.id = '.$services->authentication->getRepository()->getTableName().'.id
-							AND '.$services->authentication->getRepository()->getTableName().'.state = ?
-							AND '.$services->administrator->getRepository()->getTableName().'.state = ?',
-							[1, 1]
-						),
-						$services->administrator->getRepository()->getColumns()
-					);
-				}
-
-				$identity	=	$db		->execute()
-										->getResult();
-
-				
+				/**
+				*	JOIN	:: 	AUTHORIZATION
+				*/
 				if($services->authorization !== NULL){
-					$db	=	$services	->authorization
-										->getRepository()
-										->prepare()
-										->getDb();	
+					$db 			=	$services->authentication->getRepository()->prepare()->getDb();
+					$defaultColumns	=	$services->authorization->getRepository()->getColumns(FALSE);					
 
-					$spaceAccess	=	$this->getArrayObject([
-											'housecare'	=>	'IF((SELECT COUNT(id) FROM '.$services->authorization->getRepository()->getTableName().' WHERE type = ? AND identifiant = ? AND state = ? AND identity = ? AND _access = ?) > ?, ?, ?) AS haveAccessHousecare',
-											'villa'		=>	'IF((SELECT COUNT(id) FROM '.$services->authorization->getRepository()->getTableName().' WHERE type = ? AND identifiant = ? AND state = ? AND identity = ? AND _access = ?) > ?, ?, ?) AS haveAccessVilla',
-											'escape'	=>	'IF((SELECT COUNT(id) FROM '.$services->authorization->getRepository()->getTableName().' WHERE type = ? AND identifiant = ? AND state = ? AND identity = ? AND _access = ?) > ?, ?, ?) AS haveAccessEscape',
-											'uk'		=>	'',
-										]);
+					$tables			=	$this->getArrayObject([
+						'housecare'	=>	'housecareAuthorization',
+						'villa'		=>	'villaAuthorization',
+						'escape'	=>	'escapeAuthorization',
+					]);
 
-					$identity->access	=	$db	->select($db->expression($spaceAccess->housecare, ['space', 0, 1, $identity->id, 1, 0, 1, 0]))
-												->select($db->expression($spaceAccess->villa, ['space', 1, 1, $identity->id, 1, 0, 1, 0])) 
-												->select($db->expression($spaceAccess->escape, ['space', 1, 2, $identity->id, 1, 0, 1, 0]))
+					$columns 		=	$this->getArrayObject([
+						'housecare'	=>	[],
+						'villa'		=>	[],
+						'escape'	=>	[],
+					]);
+
+					$identifiants	=	$this->getArrayObject([
+						'housecare'	=>	1,
+						'villa'		=>	2,
+						'escape'	=>	3,
+					]);
+
+					foreach($defaultColumns as $key => $column){
+						$columns->housecare[$key]	=	$tables->housecare.ucfirst($column);
+						$columns->villa[$key]		=	$tables->villa.ucfirst($column);
+						$columns->escape[$key]		=	$tables->escape.ucfirst($column);
+					}
+					
+					$type		=	'space';
+					$identifiant=	1;
+					$state		=	1;
+					$global		=	0;
+					$gt 		=	0;
+
+					$identity->access 	=	$db	->leftJoin(
+													[$services->authorization->getRepository()->getTableName()	=>	$tables->housecare],
+													$db->expression(
+														'IF(
+															(SELECT COUNT(id) FROM '.$services->authorization->getRepository()->getTableName().' 
+															WHERE '.$services->authorization->getRepository()->getTableName().'.type = ? 
+															AND '.$services->authorization->getRepository()->getTableName().'.identifiant = ? 
+															AND '.$services->authorization->getRepository()->getTableName().'.state = '.$services->authentication->getRepository()->getTableName().'.state 
+															AND '.$services->authorization->getRepository()->getTableName().'.identity = '.$services->authentication->getRepository()->getTableName().'.id) > ?, '.
+														$tables->housecare.'.identity = '.$services->authentication->getRepository()->getTableName().'.id, '. 
+														$tables->housecare.'.identity = ?)',
+														[$type, $identifiants->housecare, $gt, $global]
+													),
+													$columns->housecare
+												)
+												->leftJoin(
+													[$services->authorization->getRepository()->getTableName()	=>	$tables->villa],
+													$db->expression(
+														'IF(
+															(SELECT COUNT(id) FROM '.$services->authorization->getRepository()->getTableName().' 
+															WHERE '.$services->authorization->getRepository()->getTableName().'.type = ? 
+															AND '.$services->authorization->getRepository()->getTableName().'.identifiant = ? 
+															AND '.$services->authorization->getRepository()->getTableName().'.state = '.$services->authentication->getRepository()->getTableName().'.state 
+															AND '.$services->authorization->getRepository()->getTableName().'.identity = '.$services->authentication->getRepository()->getTableName().'.id) > ?, '.
+														$tables->villa.'.identity = '.$services->authentication->getRepository()->getTableName().'.id, '. 
+														$tables->villa.'.identity = ?)',
+														[$type, $identifiants->villa, $gt, $global]
+													),
+													$columns->villa
+												)
+												->leftJoin(
+													[$services->authorization->getRepository()->getTableName()	=>	$tables->escape],
+													$db->expression(
+														'IF(
+															(SELECT COUNT(id) FROM '.$services->authorization->getRepository()->getTableName().' 
+															WHERE '.$services->authorization->getRepository()->getTableName().'.type = ? 
+															AND '.$services->authorization->getRepository()->getTableName().'.identifiant = ? 
+															AND '.$services->authorization->getRepository()->getTableName().'.state = '.$services->authentication->getRepository()->getTableName().'.state 
+															AND '.$services->authorization->getRepository()->getTableName().'.identity = '.$services->authentication->getRepository()->getTableName().'.id) > ?, '.
+														$tables->escape.'.identity = '.$services->authentication->getRepository()->getTableName().'.id, '. 
+														$tables->escape.'.identity = ?)',
+														[$type, $identifiants->escape, $gt, $global]
+													),
+													$columns->escape
+												)
 												->where([
-													'identity'	=>	$identity->id,
-													'state'		=>	1,
+													$services->authentication->getRepository()->getTableName().'.id'	=>	$identity->id,
+													$services->authentication->getRepository()->getTableName().'.state'	=>	1,
 												])
-												->group($services->authorization->getRepository()->getTableName().'.identity')
 												->execute()
 												->getResult();
 				}
