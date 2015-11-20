@@ -50,7 +50,7 @@ abstract class AbstractService{
 	}
 	public function getLayout(){
 		if($this->layout === NULL){
-			$this->setLayout(strtolower($this->getNameSpace()).'/layout/layout');
+			$this->setLayout(strtolower($this->getModuleName()).'/layout/layout');
 		}
 		
 		return 	$this->layout;
