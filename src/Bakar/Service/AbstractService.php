@@ -28,21 +28,38 @@ abstract class AbstractService{
 	private $eventService;
 	private $systems;
 	private $modules;
+	private $layout;
 	
 	public function test(){
 		$this->debug('Hello world from '.get_called_class(), true);
 	}
 	
-	public function debug($data, $exit = TRUE, $js = FALSE){
-		echo	$js	?	'<script type="text/javascript">console.log('.print_r($data, true).');</script>'	:
-						'<pre>'.print_r($data, true).'</pre>';
+	public function debug($data, $exit = TRUE, $js = FALSE, $type = 'print'){
+		echo	$js		?	'<script type="text/javascript">console.log('.print_r($data, true).');</script>'	:						
+				$type	==	'print'	?	'<pre>'.print_r($data, true).'</pre>'	:	var_dump($data);
 		
 		if($exit){exit;}
 	}
 	
+	public function setLayout($layout = NULL){
+		if($layout !== NULL){
+			$this->layout	=	$layout;
+		}
+		
+		return $this;
+	}
+	public function getLayout(){
+		if($this->layout === NULL){
+			$this->setLayout(strtolower($this->getModuleName()).'/layout/layout');
+		}
+		
+		return 	$this->layout;
+	}
+
 	public function _modules($e){
 		$modules	=	$e->getParam('modules');
-		$modules->offsetSet(NULL, $this->getModuleName());
+		$modules[]	=	$this->getModuleName();
+		$e->setParam('modules', $modules);
 		return $e;
 	}
 	public function setModules($modules = NULL){
@@ -55,7 +72,7 @@ abstract class AbstractService{
 		if($this->modules === NULL){
 			$this->setModules($this->getArrayObject());
 		}
-		return $this->modules
+		return $this->modules;
 	}
 	
 	public function setOptions($options = NULL){
