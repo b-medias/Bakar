@@ -21,13 +21,14 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 	private $view;
 	private $moduleName;
 	private $translator;
+	private $modules;
 
 	public function test(){
 		$this->debug('Hello world from '.get_called_class().' -> '.__FUNCTION__, true);
 	}
-	public function debug($data, $exit = TRUE, $js = FALSE){
-		echo	$js	?	'<script type="text/javascript">console.log('.print_r($data, true).');</script>'	:
-						'<pre>'.print_r($data, true).'</pre>';
+	public function debug($data, $exit = TRUE, $js = FALSE, $type = 'print'){
+		echo	$js		?	'<script type="text/javascript">console.log('.print_r($data, true).');</script>'	:						
+				$type	==	'print'	?	'<pre>'.print_r($data, true).'</pre>'	:	var_dump($data);
 		
 		if($exit){exit;}
 	}
@@ -223,21 +224,25 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 		}
 		return $this;
 	}	
-	public function getView(){
+	public function getView($currentLayout = FALSE){
 		if($this->view	===	NULL){
-			$this->setView($this->generateView());
+			$this->setView($this->generateView($currentLayout));
 		}
 		return $this->view;
 	}
-	public function view(){
-		return	$this->getView();
+	public function view($currentLayout = FALSE){
+		return	$this->getView($currentLayout);
 	}
-	public function generateView(){
+	public function generateView($currentLayout = FALSE){
 		$vars	=	$varsAjax	=	array(
 			'isAjax'	=>	$this->viewPlugin()->isAjax(),
 		);
 				
 		$vars['identity']	=	$this->getIdentity();
+
+		if($currentLayout){
+			$this->layout()->setTemplate($this->getService()->getLayout());
+		}
 				
 		return	$this	->viewPlugin()
 						->setVarsAjax($varsAjax)
@@ -270,8 +275,23 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 		return $translate;
 	}
 	
-
-	////////////////////////////////////		
+	public function setModules($modules = NULL){
+		if($modules !== NULL){
+			$this->modules	=	$modules;
+		}
+		return $this;
+	}
+	public function getModules($arrayObject = FALSE){
+		if($this->modules === NULL){
+			$this->setModules($this->getSystems()->getModules());
+		}
+		return $arrayObject	?	$this->modules	:	$this->modules->getArrayCopy();
+	}
+	public function isModuleInitialized($moduleName){
+		$moduleName	=	ucfirst(strtolower($moduleName));
+		return in_array($moduleName, $this->getModules());
+	}
+	
 	public function log($message){
 		$this	->getSystems()
 				->getEventService()
@@ -279,22 +299,120 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 				
 		return $this;
 	}
-	public function getIdentity(){	
-		$e	=	$this	->getSystems()
-						->getEventService()
-						->trigger('identity', $this, array('identity' => NULL))
-						->getEvent();
-						
-		$identity	=	$e->getParam('identity');
+	public function getIdentity(){
+		$identity 	=	NULL;
+		$services	=	$this->getArrayObject([
+							'authentication'	=>	$this->getExternalService('authentication'),
+							'authorization'		=>	$this->getExternalService('authorization'),
+						]);
+
+		if($services->authorization !== NULL){
+			$identity	=	$services->authentication->getIdentity();
+
+			if($identity !== NULL){
+				/**
+				*	JOIN	:: 	AUTHORIZATION
+				*/
+				if($services->authorization !== NULL){
+					$db 			=	$services->authentication->getRepository()->prepare()->getDb();
+					$defaultColumns	=	$services->authorization->getRepository()->getColumns(FALSE);					
+
+					$tables			=	$this->getArrayObject([
+						'housecare'	=>	'housecareAuthorization',
+						'villa'		=>	'villaAuthorization',
+						'escape'	=>	'escapeAuthorization',
+					]);
+
+					$columns 		=	$this->getArrayObject([
+						'housecare'	=>	[],
+						'villa'		=>	[],
+						'escape'	=>	[],
+					]);
+
+					$identifiants	=	$this->getArrayObject([
+						'housecare'	=>	0,
+						'villa'		=>	1,
+						'escape'	=>	2,
+					]);
+
+					foreach($defaultColumns as $key => $column){
+						$columns->housecare[$key]	=	$tables->housecare.ucfirst($column);
+						$columns->villa[$key]		=	$tables->villa.ucfirst($column);
+						$columns->escape[$key]		=	$tables->escape.ucfirst($column);
+					}
+					
+					$type		=	'space';
+					$identifiant=	1;
+					$state		=	1;
+					$global		=	0;
+					$gt 		=	0;
+
+					$identity->access 	=	$db	->leftJoin(
+													[$services->authorization->getRepository()->getTableName()	=>	$tables->housecare],
+													$db->expression(
+														'IF(
+															(SELECT COUNT(id) FROM '.$services->authorization->getRepository()->getTableName().' 
+															WHERE '.$services->authorization->getRepository()->getTableName().'.type = ? 
+															AND '.$services->authorization->getRepository()->getTableName().'.identifiant = ? 
+															AND '.$services->authorization->getRepository()->getTableName().'.state = '.$services->authentication->getRepository()->getTableName().'.state 
+															AND '.$services->authorization->getRepository()->getTableName().'.identity = '.$services->authentication->getRepository()->getTableName().'.id) > ?, '.
+														$tables->housecare.'.identity = '.$services->authentication->getRepository()->getTableName().'.id, '. 
+														$tables->housecare.'.identity = ?)',
+														[$type, $identifiants->housecare, $gt, $global]
+													),
+													$columns->housecare
+												)
+												->leftJoin(
+													[$services->authorization->getRepository()->getTableName()	=>	$tables->villa],
+													$db->expression(
+														'IF(
+															(SELECT COUNT(id) FROM '.$services->authorization->getRepository()->getTableName().' 
+															WHERE '.$services->authorization->getRepository()->getTableName().'.type = ? 
+															AND '.$services->authorization->getRepository()->getTableName().'.identifiant = ? 
+															AND '.$services->authorization->getRepository()->getTableName().'.state = '.$services->authentication->getRepository()->getTableName().'.state 
+															AND '.$services->authorization->getRepository()->getTableName().'.identity = '.$services->authentication->getRepository()->getTableName().'.id) > ?, '.
+														$tables->villa.'.identity = '.$services->authentication->getRepository()->getTableName().'.id, '. 
+														$tables->villa.'.identity = ?)',
+														[$type, $identifiants->villa, $gt, $global]
+													),
+													$columns->villa
+												)
+												->leftJoin(
+													[$services->authorization->getRepository()->getTableName()	=>	$tables->escape],
+													$db->expression(
+														'IF(
+															(SELECT COUNT(id) FROM '.$services->authorization->getRepository()->getTableName().' 
+															WHERE '.$services->authorization->getRepository()->getTableName().'.type = ? 
+															AND '.$services->authorization->getRepository()->getTableName().'.identifiant = ? 
+															AND '.$services->authorization->getRepository()->getTableName().'.state = '.$services->authentication->getRepository()->getTableName().'.state 
+															AND '.$services->authorization->getRepository()->getTableName().'.identity = '.$services->authentication->getRepository()->getTableName().'.id) > ?, '.
+														$tables->escape.'.identity = '.$services->authentication->getRepository()->getTableName().'.id, '. 
+														$tables->escape.'.identity = ?)',
+														[$type, $identifiants->escape, $gt, $global]
+													),
+													$columns->escape
+												)
+												->where([
+													$services->authentication->getRepository()->getTableName().'.id'	=>	$identity->id,
+													$services->authentication->getRepository()->getTableName().'.state'	=>	1,
+												])
+												->execute()
+												->getResult();
+				}
+			}
+		}
 
 		return $identity;				
 	}
 	public function getExternalService($namespace, $service = NULL){
-		$config		=	$this->getModuleConfig('b');
-		if($service == NULL){$service = $namespace;}
-		$service	=	$config[$namespace][$service]['service'];
+		if($this->isModuleInitialized($namespace)){
+			$config		=	$this->getModuleConfig('b');
+			if($service == NULL){$service = $namespace;}
+			$service	=	$config[$namespace][$service]['service'];
+			return	$this->getServiceLocator()->get($service);
+		}
 
-		return	$this->getServiceLocator()->get($service);
+		return NULL;
 	}
 	public function getExternalFormConfig($module, $namespace, $config){
 		$root	=	$this->getModuleConfig('b');
@@ -303,22 +421,5 @@ abstract class AbstractActionController extends \Zend\Mvc\Controller\AbstractAct
 		$root	=	$root['form'];
 		$config	=	$root[$config];
 		return	$config;
-	}
-	public function access(){		
-		$e		=	$this	->getSystems()
-							->getEventService()
-							->trigger('access', $this, array('access' => NULL, 'identity' => $this->getIdentity()))
-							->getEvent();
-							
-		$access		=	$e->getParam('access');
-		$identity	=	$e->getParam('identity');
-			
-		if($access != NULL){
-			if(!$access->isGranted){
-				return	$this->redirect()->toRoute($access->redirect->route, $access->redirect->params);
-			}
-		}
-				
-		return $identity;
 	}
 }
