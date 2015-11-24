@@ -89,7 +89,10 @@ abstract class AbstractService{
 		return $this->options;
 	}
 	public function getOption($option = NULL){
-		if($option !== NULL && array_key_exists($option, $this->getOptions())){
+		$options 		=		$this->getOptions();
+		$isExists		=		is_array($options) 		?		array_key_exists($option, $options)		:		$options->offsetExists($option);
+
+		if($option !== NULL && $isExists){
 			$options	=	$this->getOptions();
 			$option		=	$options[$option];
 		}
