@@ -83,9 +83,7 @@ abstract class AbstractService{
 	}
 	public function getOptions(){
 		if($this->options === NULL){
-			$config	=	$this->getConfig();
-			$config	=	$config[strtolower($this->getNameSpace())];
-			$options=	$config['options'];
+			$options = $this->getCurrentConfig('options');
 			$this->setOptions($options);
 		}
 		return $this->options;
