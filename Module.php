@@ -33,7 +33,7 @@ class Module extends Module\AbstractModule{
 				->attach('finish', [$this, 'finish']);
 				
 		$moduleRouteListener = new ModuleRouteListener();
-        $moduleRouteListener->attach($this->getEventManager());
+		$moduleRouteListener->attach($this->getEventManager());
 	}
 	public function route(MvcEvent $e){
 		$this	->setEvent($e)
