@@ -27,6 +27,7 @@ class PaginatorPlugin extends AbstractPlugin implements AdapterInterface{
 	protected $adapter			=	NULL;
 	protected $sqlObject		=	NULL;
 	protected $resultSet		=	NULL;
+	protected $countExpression	=	NULL;
 	protected $defaultFactory	=	array(
 		'page'				=>	NULL,
 		'itemsPerPage'		=>	12,
@@ -37,6 +38,7 @@ class PaginatorPlugin extends AbstractPlugin implements AdapterInterface{
 		'requestObject'		=>	NULL,
 		'values'			=>	NULL,
 		'identifiantRequest'=>	'p',
+		'count'				=>	'1',
 	);
 	
 	public function setFactory($factory = NULL){
@@ -227,11 +229,26 @@ class PaginatorPlugin extends AbstractPlugin implements AdapterInterface{
 		return $this->length;
 	}
 	
+	public function setCountExpression($countExpression = NULL){
+		if($countExpression !== NULL){
+			$this->countExpression	=	$countExpression;
+		}
+		return $this;
+	}
+	public function getCountExpression(){
+		if($this->countExpression === NULL){
+			$factory	=	$this->getFactory();
+			$this->setCountExpression('COUNT('.$factory['count'].')');
+		}
+		return $this->countExpression;
+	}
+	
 	/**
 	* Returns the total number of rows in the result set.
 	*
 	* @return int
 	*/
+	/*
 	public function count(){
 		if ($this->rowCount !== null) {
 			return $this->rowCount;
@@ -274,6 +291,37 @@ class PaginatorPlugin extends AbstractPlugin implements AdapterInterface{
 
 		$this->rowCount = $row['all'];
 				
+		return $this->rowCount;
+	}*/
+	public function count(){
+		if ($this->rowCount !== null) {
+			return $this->rowCount;
+		}
+		$select = clone $this->getRequestObject();
+		$select->reset(Select::COLUMNS);
+		$select->reset(Select::LIMIT);
+		$select->reset(Select::OFFSET);
+		$select->reset(Select::ORDER);
+		$select->reset(Select::GROUP);
+		
+		// get join information, clear, and repopulate without columns
+		$joins = $select->getRawState(Select::JOINS);
+		$select->reset(Select::JOINS);
+		foreach ($joins as $join) {
+			$select->join($join['name'], $join['on'], array(), $join['type']);
+		}
+		
+		$select->columns(array('all' => new Expression($this->getCountExpression())));
+					
+		$statement = $this->getSqlObject()->prepareStatementForSqlObject($select);
+		
+		$result    = $statement->execute($this->getValues());
+		
+		
+		$row       = $result->current();
+		
+		$this->rowCount = $row['all'];
+		
 		return $this->rowCount;
 	}
 		

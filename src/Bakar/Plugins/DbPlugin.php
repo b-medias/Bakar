@@ -55,6 +55,7 @@ class DbPlugin extends AbstractPlugin{
 	const ORIGINAL_TABLE_NAME	=	'ORIGINAL TABLE NAME';
 	const ALLIAS_TABLE_NAME		=	'ALLIAS TABLE NAME';
 	const TRANSACTION			=	'TRANSACTION';
+	const DISTINCT				=	'DISTINCT';
 
 	protected $doctrine				=	NULL;
 	
@@ -101,6 +102,7 @@ class DbPlugin extends AbstractPlugin{
 		self::OFFSET				=> 	NULL,
 		self::FROM					=> 	NULL,	
 		self::ON					=> 	NULL,
+		self::DISTINCT 				=>	'',
 		self::FETCH_MODE			=> 	PDO::FETCH_OBJ,
 		self::INTO					=> 	'',
 		self::FLAG					=> 	'SET',
@@ -548,6 +550,10 @@ class DbPlugin extends AbstractPlugin{
 		$key	=	strtoupper($key);
 		
 		switch($key){
+			case self::DISTINCT:
+			$this->currentFactoryRequest[self::DISTINCT]	.=	$value;
+			break;
+			
 			case self::WHERE:
 			$value		=	$this->convertValues($key, $value);
 			foreach($value as $array){
@@ -1349,6 +1355,7 @@ class DbPlugin extends AbstractPlugin{
 	}
 	public function getPaginatorPlugin(){
 		if($this->paginatorPlugin === NULL){
+			$this->getController()->paginatorPlugin()->setAdapter($this->getAdapter());
 			$this->setPaginatorPlugin($this->getController()->paginatorPlugin());
 		}
 		return $this->paginatorPlugin;
@@ -1466,6 +1473,7 @@ class DbPlugin extends AbstractPlugin{
 			self::ORDER					=> array(),
 			self::JOIN					=> array(),
 			self::VALUES				=> array(),
+			self::DISTINCT				=> NULL,
 			self::LIMIT					=> NULL,
 			self::OFFSET				=> NULL,
 			self::FROM					=> NULL,	
@@ -1527,6 +1535,10 @@ class DbPlugin extends AbstractPlugin{
 						$sqlObject	=	$sqlObject	->select()
 													->from($factory[self::FROM])
 													->columns($factory[self::COLUMNS]);
+													
+						if($factory[self::DISTINCT] != ''){
+							$sqlObject->quantifier($factory[self::DISTINCT]);
+						}
 						break;
 						
 						case 'update':
@@ -2111,6 +2123,11 @@ class DbPlugin extends AbstractPlugin{
 		return $this;
 	}
 	
+	public function distinct($expression){
+		$this->setFactoryValues(self::DISTINCT, 'DISTINCT('.$expression.'),');
+		return $this;
+	}
+		
 	/**
 	*	DOCTRINE
 	*/
