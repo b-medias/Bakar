@@ -397,7 +397,17 @@ abstract class AbstractService{
 	/**
 	*	LABS
 	*/
-	
+	public function getCurrentConfig($key = NULL){
+		$config 	=	$this->getConfig();
+		$config 	=	$config[strtolower($this->getNameSpace())];
+
+		if($key != NULL && array_key_exists($key, $config)){
+			$config 	=	$config[$key];
+		}
+
+		return 	$this->getArrayObject($config);
+	}
+
 	private $identity;
 	public function setIdentity($identity = NULL){
 		if($identity !== NULL){
