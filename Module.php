@@ -9,6 +9,7 @@ namespace Bakar;
 
 use Zend\Mvc\MvcEvent;
 use Zend\EventManager\EventInterface;
+use Zend\Mvc\ModuleRouteListener;
 
 include __DIR__.'/src/'.__NAMESPACE__.'/Module/AbstractModule.php';
 
@@ -30,6 +31,9 @@ class Module extends Module\AbstractModule{
 				
 		$this	->getEventManager()
 				->attach('finish', [$this, 'finish']);
+				
+		$moduleRouteListener = new ModuleRouteListener();
+		$moduleRouteListener->attach($this->getEventManager());
 	}
 	public function route(MvcEvent $e){
 		$this	->setEvent($e)
@@ -47,7 +51,6 @@ class Module extends Module\AbstractModule{
 	public function finish(MvcEvent $e){
 		$this	->setEvent($e);
 	}
-	
 	public function modules(){
 		$modules	=	$this	->getSystems()
 								->getEventService()
