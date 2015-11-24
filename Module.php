@@ -51,7 +51,6 @@ class Module extends Module\AbstractModule{
 	public function finish(MvcEvent $e){
 		$this	->setEvent($e);
 	}
-	
 	public function modules(){
 		$modules	=	$this	->getSystems()
 								->getEventService()
